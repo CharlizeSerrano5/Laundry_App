@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <TopBar></TopBar>
       <Container>
-        <Box style={{backgroundColor: '#F2F2F2', padding: '20px'}}>
+        <Box style={{backgroundColor: '#F2F2F2', padding: '20px', marginTop: '15px'}}>
           <h2 className='ServiceSelect'>
             SELECT A SERVICE & DATE
           </h2>

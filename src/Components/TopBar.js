@@ -7,12 +7,12 @@ export default function TopBar(){
             <Container>
                 <Box>
                     <Grid container spacing={1}>
-                        <Grid item xs={3} textAlign={'right'}>
+                        <Grid item xs={3} textAlign={'right'} alignContent={'center'}>
                             <img src={ManifestLogo}></img>
                         </Grid>
                         <Grid item xs={6}>
                             <h1 className='TopBarTitle'>Manifest</h1>
-                            <p>BUY.SELL.RENT.MANAGE.FINANCE</p>
+                            <p className='TopBarSubtitle'>BUY.SELL.RENT.MANAGE.FINANCE</p>
                         </Grid>
                     </Grid>
                 </Box>

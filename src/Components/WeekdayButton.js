@@ -27,7 +27,7 @@ export default function({WeekDay, Month, Date, Year}){
         <div>
         <div className="WeekdayButton">
             <Box>
-                <Button style={{color: '#160449', fontSize: '11px', padding: '2px', minWidth: '0px'}} onClick={() => {
+                <Button style={{color: '#160449', fontSize: '11px', padding: '2px', minWidth: '0px', fontWeight: '600'}} onClick={() => {
                     handleWeekdaySelect();
                 }}>
                     <Grid container spacing={0.5} style={{padding: '0px', width: '100%'}}>
@@ -41,11 +41,11 @@ export default function({WeekDay, Month, Date, Year}){
                 </Button>
             </Box>
         </div>
-    {/* <Grid container spacing={1}>
+    <Grid container spacing={1}>
         {availableTimes.map((time)=> (
             <Grid item xs={1}>{time.getHours()}</Grid>
         ))}
-    </Grid> */}
+    </Grid>
     </div>
     )
 };

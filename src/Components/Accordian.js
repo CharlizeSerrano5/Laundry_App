@@ -75,33 +75,57 @@ export default function AccordionUsage() {
         
         </AccordionDetails>
       </Accordion>
-      <Accordion>
+      <Accordion style={{backgroundColor: '#7CEBDE', borderRadius: '10px'}}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3-content"
-          id="panel3-header"
+          aria-controls="panel1-content"
+          id="panel1-header"
         >
           <Grid container spacing={1} textAlign={'left'}>
             <Grid item xs={12}>
               <h2>Dryers</h2>
-
             </Grid>
             <Grid item xs={12} textAlign={'left'}>
-              <div>
-                Available After 5 PM
-              </div>
+              <Box style={{backgroundColor: '#A52A2A', padding: '12px', display: 'inline-block', borderRadius: '5px'}}>
+                <h3>Available After 5 PM</h3>
+              </Box>
 
             </Grid>
           </Grid>
         </AccordionSummary>
         <AccordionDetails>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
+          <Grid container spacing={1}>
+            <Grid item xs={12}>
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="stretch"
+                container
+                spacing={0.5}
+                padding={'0px'}
+              >
+                <img src={LaundryIcon}></img>
+                {currWeek.map((weekday) => (
+                  <WeekdayButton key={`${weekday.getDay()}`} WeekDay={weekday.getDay()} Month={weekday.getMonth()+1} Date={weekday.getDate()}
+                  Year={weekday.getFullYear()}></WeekdayButton>
+                  
+                ))}
+                {/* <WeekdayButton></WeekdayButton>
+                <WeekdayButton></WeekdayButton>
+                <WeekdayButton></WeekdayButton> */}
+                </Stack>
+            </Grid>
+            <Grid item xs={12} textAlign={'left'}>
+              Available Until 5 PM
+
+            </Grid>
+            
+          </Grid>
+          </Box>
+          
+        
         </AccordionDetails>
-        <AccordionActions>
-          <Button>Cancel</Button>
-          <Button>Agree</Button>
-        </AccordionActions>
       </Accordion>
     </div>
   );

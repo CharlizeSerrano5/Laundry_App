@@ -17,12 +17,12 @@ export default function BookingTabs() {
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="Available Bookings" value="1" />
-            <Tab label="Your Bookings" value="2" />
+            <Tab label="Available Bookings" value="1" style={{fontSize: '14px',fontWeight: '600'}}/>
+            <Tab label="Your Bookings" value="2" style={{fontSize: '14px',fontWeight: '600'}}/>
           </TabList>
         </Box>
-        <TabPanel value="1">Available Bookings</TabPanel>
-        <TabPanel value="2">Your Bookings</TabPanel>
+        {/* <TabPanel value="1">Available Bookings</TabPanel>
+        <TabPanel value="2">Your Bookings</TabPanel> */}
       </TabContext>
     </Box>
   );
