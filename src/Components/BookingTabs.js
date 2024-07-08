@@ -4,6 +4,11 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import WasherAccordian from './WasherAccordian';
+import DryerAccordian from './DryerAccordian';
+import { Stack } from '@mui/material';
+import ClubhouseAccordian from './ClubhouseAccordian';
+import BBQAccordian from './BBQAccordian';
 
 export default function BookingTabs() {
   const [value, setValue] = React.useState('1');
@@ -21,8 +26,18 @@ export default function BookingTabs() {
             <Tab label="Your Bookings" value="2" style={{fontSize: '14px',fontWeight: '600'}}/>
           </TabList>
         </Box>
-        {/* <TabPanel value="1">Available Bookings</TabPanel>
-        <TabPanel value="2">Your Bookings</TabPanel> */}
+        <TabPanel value="1">
+          <Stack spacing={2}>
+            <WasherAccordian></WasherAccordian>
+            <DryerAccordian></DryerAccordian>
+            <ClubhouseAccordian></ClubhouseAccordian>
+            <BBQAccordian></BBQAccordian>
+          </Stack>
+          
+        </TabPanel>
+        <TabPanel value="2">
+          <h2>You haven't booked anything yet...</h2>
+        </TabPanel>
       </TabContext>
     </Box>
   );
