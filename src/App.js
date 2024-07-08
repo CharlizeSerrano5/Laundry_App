@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import { Box, Container } from '@mui/material';
 import './App.css';
-
+import AccordionUsage from './Components/Accordian';
+import BookingTabs from './Components/BookingTabs';
+import TopBar from './Components/TopBar';
+import BottomBar from './Components/BottomBar';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TopBar></TopBar>
+      <Container>
+        <Box>
+          SELECT A SERVICE & DATE
+          <BookingTabs></BookingTabs>
+          <AccordionUsage></AccordionUsage>
+        </Box>
+      </Container>
+      <BottomBar></BottomBar>
     </div>
   );
 }
