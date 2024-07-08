@@ -9,10 +9,18 @@ function App() {
     <div className="App">
       <TopBar></TopBar>
       <Container>
-        <Box>
-          SELECT A SERVICE & DATE
+        <Box style={{backgroundColor: '#F2F2F2', padding: '20px'}}>
+          <h2 className='ServiceSelect'>
+            SELECT A SERVICE & DATE
+          </h2>
           <BookingTabs></BookingTabs>
-          <AccordionUsage></AccordionUsage>
+          <h2 className='ServiceNote'>
+            YOU CAN ONLY BOOK UP TO 5 SERVICES AT A TIME
+          </h2>
+          <Container>
+            <AccordionUsage></AccordionUsage>
+
+          </Container>
         </Box>
       </Container>
       <BottomBar></BottomBar>

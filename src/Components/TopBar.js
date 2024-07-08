@@ -11,7 +11,7 @@ export default function TopBar(){
                             <img src={ManifestLogo}></img>
                         </Grid>
                         <Grid item xs={6}>
-                            <h1>Manifest</h1>
+                            <h1 className='TopBarTitle'>Manifest</h1>
                             <p>BUY.SELL.RENT.MANAGE.FINANCE</p>
                         </Grid>
                     </Grid>
