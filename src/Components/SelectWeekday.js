@@ -35,6 +35,7 @@ function SelectWeekday(){
                     spacing={0.5}
                     padding={'0px'}
                 >
+                    {/* TODO: When mapping also check if the item is out of order, create an array  */}
                     <img src={LaundryIcon}></img>
                     {currWeek.map((weekday) => (
                         <div onClick={() => {

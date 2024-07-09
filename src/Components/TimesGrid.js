@@ -48,6 +48,7 @@ function TimesGrid() {
                     <Grid container spacing={1}>
                     {availableTimes.map((timeString)=> (
                         <Grid item xs={3} key={timeString}>
+                            {/* TODO: add an enabled and disabled time button */}
                         <Button style={{backgroundColor: '#D6D5DA', color: '#160449', fontSize: '11px', 
                         padding: '2px', minWidth: '0px', fontWeight: '600'}} onClick={() => {
                                 }}>
