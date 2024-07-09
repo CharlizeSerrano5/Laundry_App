@@ -39,7 +39,12 @@ function WasherAccordian() {
             </Grid>
             </AccordionSummary>
             <AccordionDetails>
-                <SelectWeekday></SelectWeekday>
+                <Stack spacing={2}>
+                    <SelectWeekday></SelectWeekday>
+                    <SelectWeekday></SelectWeekday>
+                    <SelectWeekday></SelectWeekday>
+                </Stack>
+                
             </AccordionDetails>
         </Accordion>
     );

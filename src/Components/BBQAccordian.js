@@ -1,16 +1,17 @@
 import Accordion from '@mui/material/Accordion';
-import AccordionActions from '@mui/material/AccordionActions';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Button from '@mui/material/Button';
-import WeekdayButton from './WeekdayButton';
-import LaundryIcon from '../Assets/LaundryIcon.svg'
-import { Grid, Stack, Box } from '@mui/material';
+
+import { Grid } from '@mui/material';
 import SelectWeekday from './SelectWeekday';
 import AvailableButton from './AvailableButton';
+import HomeAccordian from './HomeAccordian';
 function BBQAccordian() {
     return (
+      // <HomeAccordian title={'BBQ Grill'} time={'10:30 PM'} primary={'#F97979'}>
+
+      // </HomeAccordian>
         <Accordion style={{backgroundColor: '#F97979', borderRadius: '10px'}}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

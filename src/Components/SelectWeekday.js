@@ -1,9 +1,19 @@
+import React from 'react'
 import WeekdayButton from './WeekdayButton';
 import LaundryIcon from '../Assets/LaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
+import TimesGrid from './TimesGrid';
 function SelectWeekday(){
     const currentDate = new Date();
     const currWeek = [];
+
+    const [weekdaySelect, setWeekdaySelect] = React.useState(false);
+    
+    const handleWeekdaySelect = (isSelect) => {
+        setWeekdaySelect(isSelect);
+        // console.log('selected');
+    }
+
     // console.log('currentDate', currentDate);
     let tempDate = currentDate;
     for (let i = 0; i < 7; i++){
@@ -27,16 +37,26 @@ function SelectWeekday(){
                 >
                     <img src={LaundryIcon}></img>
                     {currWeek.map((weekday) => (
-                        <WeekdayButton key={`${weekday.getDay()}`} WeekDay={weekday.getDay()} Month={weekday.getMonth()+1} Date={weekday.getDate()}
-                        Year={weekday.getFullYear()}></WeekdayButton>
+                        <div onClick={() => {
+                            handleWeekdaySelect(true);
+                        }}>
+                            <WeekdayButton key={`${weekday.getDay()}`} WeekDay={weekday.getDay()} Month={weekday.getMonth()+1} Date={weekday.getDate()}
+                            Year={weekday.getFullYear()}></WeekdayButton>
+                        </div>
+                        
                         
                         ))}
                     </Stack>
                 </Grid>
                 <Grid item xs={12} textAlign={'left'}>
-                Available Until 5 PM
-
+                    Available Until 5 PM
                 </Grid>
+                <Box 
+                display={weekdaySelect?'block': 'none'}
+                >
+                    <TimesGrid></TimesGrid>
+
+                </Box>
                 
             </Grid>
           </Box>

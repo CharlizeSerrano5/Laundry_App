@@ -11,7 +11,7 @@ import ClubhouseAccordian from './ClubhouseAccordian';
 import BBQAccordian from './BBQAccordian';
 
 export default function BookingTabs() {
-  const [value, setValue] = React.useState('1');
+  const [tabValue, setValue] = React.useState('1'); // currently on the first one
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -19,11 +19,13 @@ export default function BookingTabs() {
 
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
-      <TabContext value={value}>
+      <TabContext value={tabValue}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="Available Bookings" value="1" style={{fontSize: '14px',fontWeight: '600'}}/>
-            <Tab label="Your Bookings" value="2" style={{fontSize: '14px',fontWeight: '600'}}/>
+          <TabList onChange={handleChange} aria-label="tab API">
+            <Tab label="Available Bookings" value="1" style={{fontSize: '14px',fontWeight: '600', 
+              backgroundColor: (tabValue === '1')? '#3D5CAC': '#160449', color: '#F2F2F2', borderRadius: '10px'}}/>
+            <Tab label="Your Bookings" value="2" style={{fontSize: '14px',fontWeight: '600', 
+              backgroundColor: (tabValue === '2')? '#3D5CAC': '#160449', color: '#F2F2F2', borderRadius: '10px'}}/>
           </TabList>
         </Box>
         <TabPanel value="1">
