@@ -5,7 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
 import WeekdayButton from './WeekdayButton';
-import LaundryIcon from '../Assets/LaundryIcon.svg'
+import LaundryIcon from '../Assets/DefaultLaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
 import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
@@ -40,9 +40,9 @@ function WasherAccordian() {
             </AccordionSummary>
             <AccordionDetails>
                 <Stack spacing={2}>
-                    <WeekdayBox></WeekdayBox>
-                    <WeekdayBox></WeekdayBox>
-                    <WeekdayBox></WeekdayBox>
+                    <WeekdayBox icon={LaundryIcon}></WeekdayBox>
+                    <WeekdayBox icon={LaundryIcon}></WeekdayBox>
+                    <WeekdayBox icon={LaundryIcon}></WeekdayBox>
                 </Stack>
                 
             </AccordionDetails>

@@ -4,7 +4,7 @@ import LaundryIcon from '../Assets/LaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
 import TimesGrid from './TimesGrid';
 import WeekdaySelectContext from './WeekdaySelectContext';
-function WeekdayBox(){
+function WeekdayBox({icon}){
     const currentDate = new Date();
     const currWeek = [];
 
@@ -45,7 +45,7 @@ function WeekdayBox(){
                     padding={'0px'}
                 >
                     {/* TODO: When mapping also check if the item is out of order, create an array  */}
-                    <img src={LaundryIcon}></img>
+                    <img src={icon}></img>
                     {currWeek.map((weekday) => (
                             <WeekdaySelectContext.Provider value={{selectedDay, handleSelectedDay, handleSelectedWeekday, selectedWeekday}}>
                                 <WeekdayButton key={`${weekday.getDay()}`} WeekDay={weekday.getDay()} Month={weekday.getMonth()+1} Date={weekday.getDate()}

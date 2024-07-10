@@ -10,6 +10,10 @@ import { Grid, Stack, Box } from '@mui/material';
 import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
 import TimesGrid from './TimesGrid'
+import DryerIcon from '../Assets/DefaultDryerIcon.svg'
+import BookingTabContext from './BookingTabContext';
+import AccordianTypeContext from './AccordianTypeContext';
+
 function DryerAccordian() {
     return (
         <Accordion style={{backgroundColor: '#7CEBDE', borderRadius: '10px'}}>
@@ -29,7 +33,12 @@ function DryerAccordian() {
           </Grid>
         </AccordionSummary>
         <AccordionDetails>
-          <WeekdayBox></WeekdayBox>
+          <Stack spacing={2}>
+            <WeekdayBox icon={DryerIcon}></WeekdayBox>
+            <WeekdayBox icon={DryerIcon}></WeekdayBox>
+            <WeekdayBox icon={DryerIcon}></WeekdayBox>
+          </Stack>
+          
         </AccordionDetails>
       </Accordion>
     );

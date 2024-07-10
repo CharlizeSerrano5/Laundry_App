@@ -5,6 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Grid, Box } from '@mui/material';
 import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
+import ClubHouseIcon from '../Assets/ClubHouseIcon.svg'
 function ClubhouseAccordian() {
     return (
         <Accordion style={{backgroundColor: '#D893F9', borderRadius: '10px'}}>
@@ -24,7 +25,7 @@ function ClubhouseAccordian() {
           </Grid>
         </AccordionSummary>
         <AccordionDetails>
-          <WeekdayBox></WeekdayBox>
+          <WeekdayBox icon={ClubHouseIcon}></WeekdayBox>
         </AccordionDetails>
       </Accordion>
     );

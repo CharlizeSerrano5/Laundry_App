@@ -2,6 +2,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import BarIcon from '../Assets/BarIcon.svg'
 
 import { Grid } from '@mui/material';
 import WeekdayBox from './WeekdayBox';
@@ -29,7 +30,7 @@ function BBQAccordian() {
           </Grid>
         </AccordionSummary>
         <AccordionDetails>
-          <WeekdayBox></WeekdayBox>
+          <WeekdayBox icon={BarIcon}></WeekdayBox>
         </AccordionDetails>
       </Accordion>
     );

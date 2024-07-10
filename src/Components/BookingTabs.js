@@ -22,7 +22,9 @@ export default function BookingTabs() {
   
   const [bookedDay, setBookedDay] = React.useState('');
   const [bookedTime, setBookedTime] = React.useState('');
-
+  const [bookedType, setBookedType] = React.useState('');
+  
+  // TODO: set up a booking type (ex: laundry, grill, etc.)
 
   const defineBookedDay = (day) => {
     setBookedDay(day)
@@ -30,6 +32,10 @@ export default function BookingTabs() {
 
   const defineBookedTime = (time) => {
     setBookedTime(time)
+  }
+
+  const defineBookedType = (type) => {
+    setBookedType(type)
   }
 
   // TODO: also define the exact washer or type
@@ -49,7 +55,7 @@ export default function BookingTabs() {
 {/* TODO: fix the padding */}
           <Box marginBottom={'100px'}>
             <Stack spacing={2}>
-              <BookingTabContext.Provider value={{defineBookedDay, defineBookedTime}}>
+              <BookingTabContext.Provider value={{defineBookedDay, defineBookedTime, defineBookedType}}>
                 <WasherAccordian></WasherAccordian>
                 <DryerAccordian></DryerAccordian>
                 <ClubhouseAccordian></ClubhouseAccordian>
