@@ -9,9 +9,12 @@ import DryerAccordian from './DryerAccordian';
 import { Stack } from '@mui/material';
 import ClubhouseAccordian from './ClubhouseAccordian';
 import BBQAccordian from './BBQAccordian';
+import BookingTabContext from './BookingTabContext';
+import CenterContainer from './CenterContainer';
 
 export default function BookingTabs() {
-  const [tabValue, setValue] = React.useState('1'); // currently on the first one
+  // const [tabValue, setValue] = React.useState('1'); // currently on the first one
+  const {tabValue, setValue} = React.useContext(BookingTabContext);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -29,18 +32,23 @@ export default function BookingTabs() {
           </TabList>
         </Box>
         <TabPanel value="1">
-          <Stack spacing={2}>
-            <WasherAccordian></WasherAccordian>
-            <DryerAccordian></DryerAccordian>
-            <ClubhouseAccordian></ClubhouseAccordian>
-            <BBQAccordian></BBQAccordian>
-          </Stack>
+          <Box marginBottom={'100px'}>
+            <Stack spacing={2}>
+              <WasherAccordian></WasherAccordian>
+              <DryerAccordian></DryerAccordian>
+              <ClubhouseAccordian></ClubhouseAccordian>
+              <BBQAccordian></BBQAccordian>
+            </Stack>
+          </Box>
+          
           
         </TabPanel>
         <TabPanel value="2">
           <h2>You haven't booked anything yet...</h2>
         </TabPanel>
       </TabContext>
+
+
     </Box>
   );
 }

@@ -3,15 +3,18 @@ import WeekdayButton from './WeekdayButton';
 import LaundryIcon from '../Assets/LaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
 import TimesGrid from './TimesGrid';
-function SelectWeekday(){
+import WeekdaySelectContext from './WeekdaySelectContext';
+function SelectWeekdayBox(){
     const currentDate = new Date();
     const currWeek = [];
 
-    const [weekdaySelect, setWeekdaySelect] = React.useState(false);
+    const [weekdaySelect, setWeekdaySelect] = React.useState('false');
+    const [selectedDay, setSelectedDay] = React.useState('');
     
-    const handleWeekdaySelect = (isSelect) => {
-        setWeekdaySelect(isSelect);
-        // console.log('selected');
+
+    const handleSelectedDay = (weekday) => {
+        setSelectedDay(weekday);
+        // Being passed into WeekdayButton
     }
 
     // console.log('currentDate', currentDate);
@@ -38,12 +41,11 @@ function SelectWeekday(){
                     {/* TODO: When mapping also check if the item is out of order, create an array  */}
                     <img src={LaundryIcon}></img>
                     {currWeek.map((weekday) => (
-                        <div onClick={() => {
-                            handleWeekdaySelect(true);
-                        }}>
-                            <WeekdayButton key={`${weekday.getDay()}`} WeekDay={weekday.getDay()} Month={weekday.getMonth()+1} Date={weekday.getDate()}
-                            Year={weekday.getFullYear()}></WeekdayButton>
-                        </div>
+                            <WeekdaySelectContext.Provider value={{selectedDay, handleSelectedDay}}>
+                                <WeekdayButton key={`${weekday.getDay()}`} WeekDay={weekday.getDay()} Month={weekday.getMonth()+1} Date={weekday.getDate()}
+                                Year={weekday.getFullYear()}></WeekdayButton>
+                            </WeekdaySelectContext.Provider>
+                            
                         
                         
                         ))}
@@ -55,6 +57,7 @@ function SelectWeekday(){
                 <Box 
                 display={weekdaySelect?'block': 'none'}
                 >
+                    {/* TODO: Times grid will have a parameter that will check which day has been selecterd */}
                     <TimesGrid></TimesGrid>
 
                 </Box>
@@ -64,4 +67,4 @@ function SelectWeekday(){
     )
 }
 
-export default SelectWeekday;
+export default SelectWeekdayBox;
