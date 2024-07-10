@@ -4,7 +4,7 @@ import './WeekdayButton.css'
 import WeekdaySelectContext from './WeekdaySelectContext';
 export default function({WeekDay, Month, Date, Year}){
     const weekArr = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-    const {selectedDay, handleSelectedDay} = React.useContext(WeekdaySelectContext);
+    const {selectedDay, handleSelectedDay, handleSelectedWeekday, selectedWeekday} = React.useContext(WeekdaySelectContext);
     
     // previous printTimes was here
 
@@ -37,7 +37,14 @@ export default function({WeekDay, Month, Date, Year}){
         <div>
         <div className="WeekdayButton">
             <Button style={(dateString === selectedDay)? selectStyle:defaultStyle} onClick={() => {
-                handleSelectedDay(dateString);
+                if (dateString===selectedDay){
+                    handleSelectedDay('');
+                    handleSelectedWeekday('');
+                } else {
+                    handleSelectedDay(dateString)
+                    handleSelectedWeekday(WeekDay);
+                }
+                // handleSelectedDay(dateString);
             }}>
                 <Grid container spacing={0.5} style={{padding: '0px', width: '100%'}}>
                     <Grid item xs={12} style={{padding: '0px'}}>

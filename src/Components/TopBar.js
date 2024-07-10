@@ -4,8 +4,8 @@ import './TopBar.css'
 export default function TopBar(){
     return (
         <div className='TopBar'>
-            <Container>
-                <Box>
+            <Container  sx={{ top: 0, bottom: 'auto' }}>
+                <Box >
                     <Grid container spacing={1}>
                         <Grid item xs={3} textAlign={'right'} alignContent={'center'}>
                             <img src={ManifestLogo}></img>

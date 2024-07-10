@@ -32,6 +32,7 @@ export default function BookingTabs() {
           </TabList>
         </Box>
         <TabPanel value="1">
+{/* TODO: fix the padding */}
           <Box marginBottom={'100px'}>
             <Stack spacing={2}>
               <WasherAccordian></WasherAccordian>

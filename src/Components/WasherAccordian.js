@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import WeekdayButton from './WeekdayButton';
 import LaundryIcon from '../Assets/LaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
-import SelectWeekday from './SelectWeekdayBox';
+import SelectWeekday from './WeekdayBox';
 import AvailableButton from './AvailableButton';
 function WasherAccordian() {
     const currentDate = new Date();

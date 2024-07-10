@@ -10,7 +10,12 @@ function SelectWeekdayBox(){
 
     const [weekdaySelect, setWeekdaySelect] = React.useState('false');
     const [selectedDay, setSelectedDay] = React.useState('');
-    
+    const [selectedWeekday, setSelectedWeekday] = React.useState('');
+
+    const handleSelectedWeekday = (weekday) => {
+        setSelectedWeekday(weekday);
+        // Being passed into WeekdayButton
+    }
 
     const handleSelectedDay = (weekday) => {
         setSelectedDay(weekday);
@@ -41,7 +46,7 @@ function SelectWeekdayBox(){
                     {/* TODO: When mapping also check if the item is out of order, create an array  */}
                     <img src={LaundryIcon}></img>
                     {currWeek.map((weekday) => (
-                            <WeekdaySelectContext.Provider value={{selectedDay, handleSelectedDay}}>
+                            <WeekdaySelectContext.Provider value={{selectedDay, handleSelectedDay, handleSelectedWeekday, selectedWeekday}}>
                                 <WeekdayButton key={`${weekday.getDay()}`} WeekDay={weekday.getDay()} Month={weekday.getMonth()+1} Date={weekday.getDate()}
                                 Year={weekday.getFullYear()}></WeekdayButton>
                             </WeekdaySelectContext.Provider>
@@ -55,10 +60,12 @@ function SelectWeekdayBox(){
                     Available Until 5 PM
                 </Grid>
                 <Box 
-                display={weekdaySelect?'block': 'none'}
-                >
-                    {/* TODO: Times grid will have a parameter that will check which day has been selecterd */}
-                    <TimesGrid></TimesGrid>
+                    display={selectedDay?'block': 'none'}
+                    >
+                    {/* TODO: Times grid will have a parameter that will check which day has been selected */}
+                    <WeekdaySelectContext.Provider value= {{selectedDay, selectedWeekday}}>
+                        <TimesGrid></TimesGrid>
+                    </WeekdaySelectContext.Provider>
 
                 </Box>
                 

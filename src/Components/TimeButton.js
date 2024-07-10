@@ -2,12 +2,9 @@ import React from 'react';
 import { Box, Button, Grid, Container, Stack } from "@mui/material";
 import TimeContext from './TimeContext';
 function TimeButton({timeString}) {
-    // const [selectedTime] = React.useContext(TimeContext);
+    const {selectedTime, defineSelectedTime} = React.useContext(TimeContext);
 
     const [selectTime, setSelectTime] = React.useState(false);
-    function handleSelectTime (isSelected) {
-        setSelectTime(isSelected);
-    }
 
     const defaultStyle = {
         backgroundColor: '#D6D5DA', 
@@ -27,10 +24,13 @@ function TimeButton({timeString}) {
         fontWeight: '600'
     }
     
-    return (
-            
-        <Button style={selectTime? selectedStyle: defaultStyle} onClick={() => {
-                handleSelectTime(true);
+    return (        
+        <Button style={selectedTime===timeString? selectedStyle: defaultStyle} onClick={() => {
+                if (selectedTime===timeString){
+                    defineSelectedTime('');
+                } else {
+                    defineSelectedTime(timeString)
+                }
             }}>
             {timeString}
         </Button>    

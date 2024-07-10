@@ -4,7 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { Grid } from '@mui/material';
-import SelectWeekday from './SelectWeekdayBox';
+import SelectWeekday from './WeekdayBox';
 import AvailableButton from './AvailableButton';
 function HomeAccordian({primary, time, title}) {
     return (
