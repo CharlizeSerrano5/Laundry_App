@@ -4,7 +4,7 @@ import './WeekdayButton.css'
 import WeekdaySelectContext from './WeekdaySelectContext';
 export default function({WeekDay, Month, Date, Year}){
     const weekArr = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-    const {selectedDay, handleSelectedDay, handleSelectedWeekday, selectedWeekday} = React.useContext(WeekdaySelectContext);
+    const {selectedDay, handleSelectedDay, handleSelectedWeekday} = React.useContext(WeekdaySelectContext);
     
     // previous printTimes was here
 

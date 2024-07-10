@@ -12,12 +12,14 @@ function TimesGrid() {
     // set currentDate time to 12:00
     // push onto an array 44 times
     
+    // from TimesGrid
     const {selectedDay, selectedWeekday} = React.useContext(WeekdaySelectContext);
     const [selectedTime, setSelectedTime] = React.useState('');
 
     function defineSelectedTime (time) {
         setSelectedTime(time);
         console.log('is being defined: ', time)
+        // passed into timeButton
     }
 
     // Required for mapping

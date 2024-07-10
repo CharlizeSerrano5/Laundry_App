@@ -8,6 +8,7 @@ function SelectWeekdayBox(){
     const currentDate = new Date();
     const currWeek = [];
 
+    // from WeekdayBox
     const [weekdaySelect, setWeekdaySelect] = React.useState('false');
     const [selectedDay, setSelectedDay] = React.useState('');
     const [selectedWeekday, setSelectedWeekday] = React.useState('');
