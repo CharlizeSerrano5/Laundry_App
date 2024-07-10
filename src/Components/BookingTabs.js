@@ -19,6 +19,20 @@ export default function BookingTabs() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  
+  const [bookedDay, setBookedDay] = React.useState('');
+  const [bookedTime, setBookedTime] = React.useState('');
+
+
+  const defineBookedDay = (day) => {
+    setBookedDay(day)
+  }
+
+  const defineBookedTime = (time) => {
+    setBookedTime(time)
+  }
+
+  // TODO: also define the exact washer or type
 
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
@@ -35,17 +49,23 @@ export default function BookingTabs() {
 {/* TODO: fix the padding */}
           <Box marginBottom={'100px'}>
             <Stack spacing={2}>
-              <WasherAccordian></WasherAccordian>
-              <DryerAccordian></DryerAccordian>
-              <ClubhouseAccordian></ClubhouseAccordian>
-              <BBQAccordian></BBQAccordian>
+              <BookingTabContext.Provider value={{defineBookedDay, defineBookedTime}}>
+                <WasherAccordian></WasherAccordian>
+                <DryerAccordian></DryerAccordian>
+                <ClubhouseAccordian></ClubhouseAccordian>
+                <BBQAccordian></BBQAccordian>
+              </BookingTabContext.Provider>
+              
             </Stack>
           </Box>
           
           
         </TabPanel>
         <TabPanel value="2">
+          {/* Create the components for what has been booked */}
           <h2>You haven't booked anything yet...</h2>
+          <div>Booked Day: {bookedDay}</div>
+          <div>Booked Time: {bookedTime}</div>
         </TabPanel>
       </TabContext>
 

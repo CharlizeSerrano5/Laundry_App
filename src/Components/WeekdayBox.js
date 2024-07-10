@@ -4,7 +4,7 @@ import LaundryIcon from '../Assets/LaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
 import TimesGrid from './TimesGrid';
 import WeekdaySelectContext from './WeekdaySelectContext';
-function SelectWeekdayBox(){
+function WeekdayBox(){
     const currentDate = new Date();
     const currWeek = [];
 
@@ -75,4 +75,4 @@ function SelectWeekdayBox(){
     )
 }
 
-export default SelectWeekdayBox;
+export default WeekdayBox;

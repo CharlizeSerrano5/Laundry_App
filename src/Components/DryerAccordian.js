@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import WeekdayButton from './WeekdayButton';
 import LaundryIcon from '../Assets/LaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
-import SelectWeekday from './WeekdayBox';
+import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
 import TimesGrid from './TimesGrid'
 function DryerAccordian() {
@@ -29,7 +29,7 @@ function DryerAccordian() {
           </Grid>
         </AccordionSummary>
         <AccordionDetails>
-          <SelectWeekday></SelectWeekday>
+          <WeekdayBox></WeekdayBox>
         </AccordionDetails>
       </Accordion>
     );

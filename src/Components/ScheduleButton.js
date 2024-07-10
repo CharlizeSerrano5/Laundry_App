@@ -5,6 +5,7 @@ import Modal from '@mui/material/Modal';
 import { Box, Button, Container } from "@mui/material";
 import TimeContext from "./TimeContext";
 import WeekdaySelectContext from './WeekdaySelectContext';
+import BookingTabContext from './BookingTabContext';
 function ScheduleButton(){
     const {selectedTime} = React.useContext(TimeContext)
     // set a state for if its a available and if its not available
@@ -16,6 +17,7 @@ function ScheduleButton(){
     //TODO: - possible logic to set up: initialize the states in the booking tabs fix all the current states to start there
     const [booking, setBooking] = React.useState('');
 
+    const {defineBookedDay, defineBookedTime} = React.useContext(BookingTabContext);
 
     // Obtained from MUI
     const [open, setOpen] = React.useState(false);
@@ -111,6 +113,8 @@ function ScheduleButton(){
                     </h2>
                     <Button onClick={()=>{
                         handleClose();
+                        defineBookedDay(selectedDay);
+                        defineBookedTime(selectedTime);
                     }}>
                         <h2>OK</h2>
                         {/* TODO: when you select okay then save the information */}

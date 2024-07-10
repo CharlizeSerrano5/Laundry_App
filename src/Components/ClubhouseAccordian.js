@@ -3,7 +3,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Grid, Box } from '@mui/material';
-import SelectWeekday from './WeekdayBox';
+import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
 function ClubhouseAccordian() {
     return (
@@ -24,7 +24,7 @@ function ClubhouseAccordian() {
           </Grid>
         </AccordionSummary>
         <AccordionDetails>
-          <SelectWeekday></SelectWeekday>
+          <WeekdayBox></WeekdayBox>
         </AccordionDetails>
       </Accordion>
     );

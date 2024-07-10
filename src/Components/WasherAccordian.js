@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import WeekdayButton from './WeekdayButton';
 import LaundryIcon from '../Assets/LaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
-import SelectWeekday from './WeekdayBox';
+import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
 function WasherAccordian() {
     const currentDate = new Date();
@@ -40,9 +40,9 @@ function WasherAccordian() {
             </AccordionSummary>
             <AccordionDetails>
                 <Stack spacing={2}>
-                    <SelectWeekday></SelectWeekday>
-                    <SelectWeekday></SelectWeekday>
-                    <SelectWeekday></SelectWeekday>
+                    <WeekdayBox></WeekdayBox>
+                    <WeekdayBox></WeekdayBox>
+                    <WeekdayBox></WeekdayBox>
                 </Stack>
                 
             </AccordionDetails>
