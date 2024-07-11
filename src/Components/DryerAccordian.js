@@ -13,10 +13,18 @@ import TimesGrid from './TimesGrid'
 import DryerIcon from '../Assets/DefaultDryerIcon.svg'
 import BookingTabContext from './BookingTabContext';
 import AccordianTypeContext from './AccordianTypeContext';
+import React from 'react';
+
 
 function DryerAccordian() {
+  // Define the original accordian type
+  const {accordianType, defineAccordianType} = React.useContext(AccordianTypeContext);
+
+
     return (
-        <Accordion style={{backgroundColor: '#7CEBDE', borderRadius: '10px'}}>
+        <Accordion style={{backgroundColor: '#7CEBDE', borderRadius: '10px'}} onChange={() =>{
+          defineAccordianType('Dryer')
+        }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
@@ -34,6 +42,9 @@ function DryerAccordian() {
         </AccordionSummary>
         <AccordionDetails>
           <Stack spacing={2}>
+            {/* <AccordianTypeContext.Provider value={{accordianType}}>
+
+            </AccordianTypeContext.Provider> */}
             <WeekdayBox icon={DryerIcon}></WeekdayBox>
             <WeekdayBox icon={DryerIcon}></WeekdayBox>
             <WeekdayBox icon={DryerIcon}></WeekdayBox>

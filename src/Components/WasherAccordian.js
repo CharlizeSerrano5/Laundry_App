@@ -9,7 +9,15 @@ import LaundryIcon from '../Assets/DefaultLaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
 import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
+import AccordianTypeContext from './AccordianTypeContext';
+
+import React from 'react';
 function WasherAccordian() {
+    const {accordianType, defineAccordianType} = React.useContext(AccordianTypeContext);
+    // const {washerBooked, defineWasherBooked} = React.useContext(WasherContext);
+    // define the washer object
+
+
     const currentDate = new Date();
     const currWeek = [];
     // console.log('currentDate', currentDate);
@@ -22,7 +30,9 @@ function WasherAccordian() {
     //   console.log('tempDate: ', tempDate);
     }
     return (
-        <Accordion style={{backgroundColor: '#79CBF9', borderRadius: '10px'}}>
+        <Accordion style={{backgroundColor: '#79CBF9', borderRadius: '10px'}} onChange={() => {
+            defineAccordianType('Washer');
+        }}>
             <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
@@ -42,7 +52,7 @@ function WasherAccordian() {
                 <Stack spacing={2}>
                     <WeekdayBox icon={LaundryIcon}></WeekdayBox>
                     <WeekdayBox icon={LaundryIcon}></WeekdayBox>
-                    <WeekdayBox icon={LaundryIcon}></WeekdayBox>
+                    <WeekdayBox icon={LaundryIcon}></WeekdayBox>                    
                 </Stack>
                 
             </AccordionDetails>

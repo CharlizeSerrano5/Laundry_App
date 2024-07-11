@@ -10,7 +10,15 @@ import { Stack } from '@mui/material';
 import ClubhouseAccordian from './ClubhouseAccordian';
 import BBQAccordian from './BBQAccordian';
 import BookingTabContext from './BookingTabContext';
+import AccordianTypeContext from './AccordianTypeContext';
 import CenterContainer from './CenterContainer';
+
+import DryerContext from './DryerContext'
+import WasherContext from './WasherContext'
+import ClubhouseContext from './ClubhouseContext'
+import BBQContext from './BBQContext'
+
+
 
 export default function BookingTabs() {
   // const [tabValue, setValue] = React.useState('1'); // currently on the first one
@@ -19,11 +27,62 @@ export default function BookingTabs() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  // save the washer as an object
+  const [washerBooked, setWasherBooked] = React.useState({
+    day: '',
+    time: '',
+  })
+  const defineWasherBooked = (day, time) => {
+    setWasherBooked({
+      day,
+      time
+    })
+  }
+
+
+  const [dryerBooked, setDryerBooked] = React.useState({
+    day: '',
+    time: '',
+  })
+  const defineDryerBooked = (day, time) => {
+    setDryerBooked({
+      day,
+      time
+    })
+  }
+
+  const [clubhouseBooked, setClubhouseBooked] = React.useState({
+    day: '',
+    time: '',
+  })
+  const defineClubhouseBooked = (day, time) => {
+    setClubhouseBooked({
+      day,
+      time
+    })
+  }
+
+  const [BBQBooked, setBBQBooked] = React.useState({
+    day: '',
+    time: '',
+  })
+  const defineBBQBooked = (day, time) => {
+    setBBQBooked({
+      day,
+      time
+    })
+  }
   
   const [bookedDay, setBookedDay] = React.useState('');
   const [bookedTime, setBookedTime] = React.useState('');
   const [bookedType, setBookedType] = React.useState('');
   
+  const [accordianType, setAccordianType] = React.useState('');
+  const defineAccordianType = (type) => {
+    setAccordianType(type);
+  }
+
   // TODO: set up a booking type (ex: laundry, grill, etc.)
 
   const defineBookedDay = (day) => {
@@ -56,10 +115,23 @@ export default function BookingTabs() {
           <Box marginBottom={'100px'}>
             <Stack spacing={2}>
               <BookingTabContext.Provider value={{defineBookedDay, defineBookedTime, defineBookedType}}>
-                <WasherAccordian></WasherAccordian>
-                <DryerAccordian></DryerAccordian>
-                <ClubhouseAccordian></ClubhouseAccordian>
-                <BBQAccordian></BBQAccordian>
+                <AccordianTypeContext.Provider value={{accordianType, defineAccordianType}}>
+                  <WasherContext.Provider value={{washerBooked, defineWasherBooked}}>
+                    <DryerContext.Provider value = {{dryerBooked, defineDryerBooked}}>
+                      <ClubhouseContext.Provider value = {{clubhouseBooked, defineClubhouseBooked}}>
+                        <BBQContext.Provider value = {{BBQBooked, defineBBQBooked}}>
+                          <WasherAccordian></WasherAccordian>                  
+                          <DryerAccordian></DryerAccordian>
+                          <ClubhouseAccordian></ClubhouseAccordian>
+                          <BBQAccordian></BBQAccordian>
+                        </BBQContext.Provider>
+                      </ClubhouseContext.Provider>
+                    </DryerContext.Provider>
+                    
+                  </WasherContext.Provider>
+
+                </AccordianTypeContext.Provider>
+                
               </BookingTabContext.Provider>
               
             </Stack>
@@ -69,9 +141,19 @@ export default function BookingTabs() {
         </TabPanel>
         <TabPanel value="2">
           {/* Create the components for what has been booked */}
+          {/* if it hasnt been booked yet show this */}
+
           <h2>You haven't booked anything yet...</h2>
           <div>Booked Day: {bookedDay}</div>
           <div>Booked Time: {bookedTime}</div>
+          
+          <Box>
+            <div>washer: {washerBooked.day} {washerBooked.time}</div>
+            <div>dryer: {dryerBooked.day} {dryerBooked.time}</div>
+            <div>clubhouse: {clubhouseBooked.day} {clubhouseBooked.time}</div>
+            <div>BBQ: {BBQBooked.day} {BBQBooked.time}</div>
+
+          </Box>
         </TabPanel>
       </TabContext>
 

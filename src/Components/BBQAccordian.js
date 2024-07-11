@@ -8,12 +8,19 @@ import { Grid } from '@mui/material';
 import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
 import HomeAccordian from './HomeAccordian';
+import AccordianTypeContext from './AccordianTypeContext';
+import React from 'react';
+
 function BBQAccordian() {
-    return (
+  const {accordianType, defineAccordianType} = React.useContext(AccordianTypeContext);
+  
+  return (
       // <HomeAccordian title={'BBQ Grill'} time={'10:30 PM'} primary={'#F97979'}>
 
       // </HomeAccordian>
-        <Accordion style={{backgroundColor: '#F97979', borderRadius: '10px'}}>
+        <Accordion style={{backgroundColor: '#F97979', borderRadius: '10px'}} onChange={() => {
+          defineAccordianType('BBQ')
+        }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"

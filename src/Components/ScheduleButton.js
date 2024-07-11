@@ -6,10 +6,26 @@ import { Box, Button, Container } from "@mui/material";
 import TimeContext from "./TimeContext";
 import WeekdaySelectContext from './WeekdaySelectContext';
 import BookingTabContext from './BookingTabContext';
+import AccordianTypeContext from './AccordianTypeContext';
+import WasherContext from './WasherContext';
+import DryerContext from './DryerContext';
+import ClubhouseContext from './ClubhouseContext';
+import BBQContext from './BBQContext';
+
+
 function ScheduleButton(){
     const {selectedTime} = React.useContext(TimeContext)
     // set a state for if its a available and if its not available
     const {selectedDay, selectedWeekday} = React.useContext(WeekdaySelectContext)
+    // check the accordianType
+    const {accordianType}= React.useContext(AccordianTypeContext);
+    const {washerBooked, defineWasherBooked} = React.useContext(WasherContext);
+    const {dryerBooked, defineDryerBooked} = React.useContext(DryerContext);
+    const {clubhouseBooked, defineClubhouseBooked} = React.useContext(ClubhouseContext);
+    const {BBQBooked, defineBBQBooked} = React.useContext(BBQContext);
+
+
+
     // TODO: create a context for weekday
     // const {selectedWeekday} = React.useContext(WeekdaySelectContext); 
 
@@ -115,6 +131,18 @@ function ScheduleButton(){
                         handleClose();
                         defineBookedDay(selectedDay);
                         defineBookedTime(selectedTime);
+                        if (accordianType === 'Washer'){
+                            defineWasherBooked(selectedDay,selectedTime)
+                        }
+                        if (accordianType === 'Dryer'){
+                            defineDryerBooked(selectedDay,selectedTime)
+                        }
+                        if (accordianType === 'Clubhouse'){
+                            defineClubhouseBooked(selectedDay,selectedTime)
+                        }
+                        if (accordianType === 'BBQ'){
+                            defineBBQBooked(selectedDay,selectedTime)
+                        }
                     }}>
                         <h2>OK</h2>
                         {/* TODO: when you select okay then save the information */}

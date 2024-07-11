@@ -18,7 +18,6 @@ function TimesGrid() {
 
     function defineSelectedTime (time) {
         setSelectedTime(time);
-        console.log('is being defined: ', time)
         // passed into timeButton
     }
 
