@@ -12,13 +12,12 @@ import AvailableButton from './AvailableButton';
 import TimesGrid from './TimesGrid'
 import DryerIcon from '../Assets/DefaultDryerIcon.svg'
 import BookingTabContext from './BookingTabContext';
-import AccordianTypeContext from './AccordianTypeContext';
 import React from 'react';
 
 
 function DryerAccordian() {
   // Define the original accordian type
-  const {accordianType, defineAccordianType} = React.useContext(AccordianTypeContext);
+  const {accordianType, defineAccordianType} = React.useContext(BookingTabContext);
 
 
     return (

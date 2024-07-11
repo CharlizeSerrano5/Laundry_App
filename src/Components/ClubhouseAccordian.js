@@ -6,11 +6,11 @@ import { Grid, Box } from '@mui/material';
 import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
 import ClubHouseIcon from '../Assets/ClubHouseIcon.svg'
-import AccordianTypeContext from './AccordianTypeContext';
 import React from 'react';
-function ClubhouseAccordian() {
-  const {accordianType, defineAccordianType} = React.useContext(AccordianTypeContext);
+import BookingTabContext from './BookingTabContext';
 
+function ClubhouseAccordian() {
+  const {accordianType, defineAccordianType} = React.useContext(BookingTabContext);
     return (
         <Accordion style={{backgroundColor: '#D893F9', borderRadius: '10px'}} onChange={() => {
           defineAccordianType('Clubhouse')

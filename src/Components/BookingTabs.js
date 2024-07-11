@@ -10,7 +10,6 @@ import { Button, Container, Stack } from '@mui/material';
 import ClubhouseAccordian from './ClubhouseAccordian';
 import BBQAccordian from './BBQAccordian';
 import BookingTabContext from './BookingTabContext';
-import AccordianTypeContext from './AccordianTypeContext';
 import CenterContainer from './CenterContainer';
 
 
@@ -69,7 +68,6 @@ export default function BookingTabs() {
       time
     })
   }
-  
   const [bookedDay, setBookedDay] = React.useState('');
   const [bookedTime, setBookedTime] = React.useState('');
   const [bookedType, setBookedType] = React.useState('');
@@ -94,8 +92,6 @@ export default function BookingTabs() {
   }
 
   // TODO: also define the exact washer or type
-
-
   const buttonStyle={
       backgroundColor: '#76B148',
       display: 'inline', 
@@ -135,17 +131,13 @@ export default function BookingTabs() {
                 clubhouseBooked, defineClubhouseBooked,
                 dryerBooked, defineDryerBooked,
                 washerBooked, defineWasherBooked,
+                accordianType, defineAccordianType
                 }}>
-                <AccordianTypeContext.Provider value={{accordianType, defineAccordianType}}>
-                          <WasherAccordian></WasherAccordian>                  
-                          <DryerAccordian></DryerAccordian>
-                          <ClubhouseAccordian></ClubhouseAccordian>
-                          <BBQAccordian></BBQAccordian>
-
-                </AccordianTypeContext.Provider>
-                
+                    <WasherAccordian></WasherAccordian>                  
+                    <DryerAccordian></DryerAccordian>
+                    <ClubhouseAccordian></ClubhouseAccordian>
+                    <BBQAccordian></BBQAccordian>
               </BookingTabContext.Provider>
-              
             </Stack>
           </Box>
           

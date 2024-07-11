@@ -6,7 +6,6 @@ import { Box, Button, Container, Stack } from "@mui/material";
 import TimeContext from "./TimeContext";
 import WeekdaySelectContext from './WeekdaySelectContext';
 import BookingTabContext from './BookingTabContext';
-import AccordianTypeContext from './AccordianTypeContext';
 
 
 
@@ -18,7 +17,7 @@ function ScheduleButton(){
     // set a state for if its a available and if its not available
     const {selectedDay, selectedWeekday} = React.useContext(WeekdaySelectContext)
     // check the accordianType
-    const {accordianType}= React.useContext(AccordianTypeContext);
+    const {accordianType}= React.useContext(BookingTabContext);
     const {washerBooked, defineWasherBooked} = React.useContext(BookingTabContext);
     const {dryerBooked, defineDryerBooked} = React.useContext(BookingTabContext);
     const {clubhouseBooked, defineClubhouseBooked} = React.useContext(BookingTabContext);

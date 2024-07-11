@@ -8,11 +8,12 @@ import { Grid } from '@mui/material';
 import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
 import HomeAccordian from './HomeAccordian';
-import AccordianTypeContext from './AccordianTypeContext';
 import React from 'react';
+import BookingTabContext from './BookingTabContext';
+
 
 function BBQAccordian() {
-  const {accordianType, defineAccordianType} = React.useContext(AccordianTypeContext);
+  const {accordianType, defineAccordianType} = React.useContext(BookingTabContext);
   
   return (
       // <HomeAccordian title={'BBQ Grill'} time={'10:30 PM'} primary={'#F97979'}>

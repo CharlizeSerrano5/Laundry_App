@@ -9,11 +9,12 @@ import LaundryIcon from '../Assets/DefaultLaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
 import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
-import AccordianTypeContext from './AccordianTypeContext';
+import BookingTabContext from './BookingTabContext';
+
 
 import React from 'react';
 function WasherAccordian() {
-    const {accordianType, defineAccordianType} = React.useContext(AccordianTypeContext);
+    const {accordianType, defineAccordianType} = React.useContext(BookingTabContext);
     // const {washerBooked, defineWasherBooked} = React.useContext(WasherContext);
     // define the washer object
 
