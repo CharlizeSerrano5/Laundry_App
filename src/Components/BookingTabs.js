@@ -13,11 +13,7 @@ import BookingTabContext from './BookingTabContext';
 import AccordianTypeContext from './AccordianTypeContext';
 import CenterContainer from './CenterContainer';
 
-import DryerContext from './DryerContext'
-import WasherContext from './WasherContext'
-import ClubhouseContext from './ClubhouseContext'
-import BBQContext from './BBQContext'
-import ConfirmButton from './ConfirmButton';
+
 
 import './BookingTabs.css'
 
@@ -133,21 +129,18 @@ export default function BookingTabs() {
 {/* TODO: fix the padding */}
           <Box marginBottom={'100px'}>
             <Stack spacing={2}>
-              <BookingTabContext.Provider value={{defineBookedDay, defineBookedTime, defineBookedType}}>
+              <BookingTabContext.Provider value={{
+                defineBookedDay, defineBookedTime, defineBookedType, 
+                BBQBooked, defineBBQBooked, 
+                clubhouseBooked, defineClubhouseBooked,
+                dryerBooked, defineDryerBooked,
+                washerBooked, defineWasherBooked,
+                }}>
                 <AccordianTypeContext.Provider value={{accordianType, defineAccordianType}}>
-                  <WasherContext.Provider value={{washerBooked, defineWasherBooked}}>
-                    <DryerContext.Provider value = {{dryerBooked, defineDryerBooked}}>
-                      <ClubhouseContext.Provider value = {{clubhouseBooked, defineClubhouseBooked}}>
-                        <BBQContext.Provider value = {{BBQBooked, defineBBQBooked}}>
                           <WasherAccordian></WasherAccordian>                  
                           <DryerAccordian></DryerAccordian>
                           <ClubhouseAccordian></ClubhouseAccordian>
                           <BBQAccordian></BBQAccordian>
-                        </BBQContext.Provider>
-                      </ClubhouseContext.Provider>
-                    </DryerContext.Provider>
-                    
-                  </WasherContext.Provider>
 
                 </AccordianTypeContext.Provider>
                 

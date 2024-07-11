@@ -7,11 +7,7 @@ import TimeContext from "./TimeContext";
 import WeekdaySelectContext from './WeekdaySelectContext';
 import BookingTabContext from './BookingTabContext';
 import AccordianTypeContext from './AccordianTypeContext';
-import WasherContext from './WasherContext';
-import DryerContext from './DryerContext';
-import ClubhouseContext from './ClubhouseContext';
-import BBQContext from './BBQContext';
-import ConfirmButton from './ConfirmButton';
+
 
 
 import './ScheduleButton.css'
@@ -23,10 +19,10 @@ function ScheduleButton(){
     const {selectedDay, selectedWeekday} = React.useContext(WeekdaySelectContext)
     // check the accordianType
     const {accordianType}= React.useContext(AccordianTypeContext);
-    const {washerBooked, defineWasherBooked} = React.useContext(WasherContext);
-    const {dryerBooked, defineDryerBooked} = React.useContext(DryerContext);
-    const {clubhouseBooked, defineClubhouseBooked} = React.useContext(ClubhouseContext);
-    const {BBQBooked, defineBBQBooked} = React.useContext(BBQContext);
+    const {washerBooked, defineWasherBooked} = React.useContext(BookingTabContext);
+    const {dryerBooked, defineDryerBooked} = React.useContext(BookingTabContext);
+    const {clubhouseBooked, defineClubhouseBooked} = React.useContext(BookingTabContext);
+    const {BBQBooked, defineBBQBooked} = React.useContext(BookingTabContext);
 
     const [booking, setBooking] = React.useState('');
 
