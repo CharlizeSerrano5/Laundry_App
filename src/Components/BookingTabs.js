@@ -6,7 +6,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import WasherAccordian from './WasherAccordian';
 import DryerAccordian from './DryerAccordian';
-import { Stack } from '@mui/material';
+import { Button, Container, Stack } from '@mui/material';
 import ClubhouseAccordian from './ClubhouseAccordian';
 import BBQAccordian from './BBQAccordian';
 import BookingTabContext from './BookingTabContext';
@@ -17,7 +17,9 @@ import DryerContext from './DryerContext'
 import WasherContext from './WasherContext'
 import ClubhouseContext from './ClubhouseContext'
 import BBQContext from './BBQContext'
+import ConfirmButton from './ConfirmButton';
 
+import './BookingTabs.css'
 
 
 export default function BookingTabs() {
@@ -39,8 +41,6 @@ export default function BookingTabs() {
       time
     })
   }
-
-
   const [dryerBooked, setDryerBooked] = React.useState({
     day: '',
     time: '',
@@ -99,6 +99,25 @@ export default function BookingTabs() {
 
   // TODO: also define the exact washer or type
 
+
+  const buttonStyle={
+      backgroundColor: '#76B148',
+      display: 'inline', 
+      borderRadius: '5px',
+      padding: '5px', 
+      width: '100%', 
+      justifyContent: 'center',
+      color: 'white',
+  }
+  const otherButtonStyle={
+      backgroundColor: '#A52A2A',
+      display: 'inline', 
+      borderRadius: '5px',
+      padding: '5px', 
+      width: '100%', 
+      justifyContent: 'center',
+      color: 'white',
+  }
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={tabValue}>
@@ -140,18 +159,81 @@ export default function BookingTabs() {
           
         </TabPanel>
         <TabPanel value="2">
-          {/* Create the components for what has been booked */}
-          {/* if it hasnt been booked yet show this */}
-
-          <h2>You haven't booked anything yet...</h2>
-          <div>Booked Day: {bookedDay}</div>
-          <div>Booked Time: {bookedTime}</div>
+          <Box display={washerBooked.day||dryerBooked.day||clubhouseBooked.day||BBQBooked.day? 'none': 'block'}>
+            <h2 className='NoBooking'>You haven't booked anything yet...</h2>
+          </Box>
+          {/* <div>Booked Day: {bookedDay}</div>
+          <div>Booked Time: {bookedTime}</div> */}
           
+          {/* TODO: Create separate components for every item (the box, the buttons)*/}
           <Box>
-            <div>washer: {washerBooked.day} {washerBooked.time}</div>
-            <div>dryer: {dryerBooked.day} {dryerBooked.time}</div>
-            <div>clubhouse: {clubhouseBooked.day} {clubhouseBooked.time}</div>
-            <div>BBQ: {BBQBooked.day} {BBQBooked.time}</div>
+            <Stack spacing={2}>
+              <Box style={{backgroundColor: '#79CBF9', borderRadius: '10px', paddingTop: '10px', paddingBottom: '10px'}} display={washerBooked.day?'block': 'none'}>
+                <Container>
+                  <h2 className='BookingTitle'>
+                    Washers
+                  </h2>
+                  <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
+                    <div>{washerBooked.day} {washerBooked.time}</div>
+                    <Stack spacing={1}>
+                      <Button style={buttonStyle}>Start</Button>
+                      <Button style={otherButtonStyle}>Report an Issue</Button>
+                    </Stack>
+                  </Box>
+                </Container>
+                
+              </Box>
+
+              
+              <Box style={{backgroundColor: '#7CEBDE', borderRadius: '10px', paddingTop: '10px', paddingBottom: '10px'}} display={dryerBooked.day?'block': 'none'}>
+                <Container>
+                  <h2 className='BookingTitle'>
+                    Dryers
+                  </h2>
+                  <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
+                    <div>{dryerBooked.day} {dryerBooked.time}</div>
+                    <Stack spacing={1}>
+                      <Button style={buttonStyle}>Confirm Completion</Button>
+                      <Button style={otherButtonStyle}>Report an Issue</Button>
+                    </Stack>
+                  </Box>
+                </Container>
+                
+              </Box>
+
+              <Box style={{backgroundColor: '#D893F9', borderRadius: '10px', paddingTop: '10px', paddingBottom: '10px'}} display={clubhouseBooked.day?'block': 'none'}>
+                <Container>
+                  <h2 className='BookingTitle'>
+                    Clubhouse
+                  </h2>
+                  <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
+                    <div>{clubhouseBooked.day} {clubhouseBooked.time}</div>
+                    <Stack spacing={1}>
+                      <Button style={buttonStyle}>Cancel Booking</Button>
+                      <Button style={otherButtonStyle}>Report an Issue</Button>
+                    </Stack>
+                  </Box>
+                </Container>
+                
+              </Box>
+
+              <Box style={{backgroundColor: '#F97979', borderRadius: '10px', paddingTop: '10px', paddingBottom: '10px'}} display={BBQBooked.day?'block': 'none'}>
+                <Container>
+                  <h2 className='BookingTitle'>
+                    BBQ Grill
+                  </h2>
+                  <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
+                    <div>{BBQBooked.day} {BBQBooked.time}</div>
+                    <Stack spacing={1}>
+                      <Button style={buttonStyle}>Cancel Booking</Button>
+                      <Button style={otherButtonStyle}>Report an Issue</Button>
+                    </Stack>
+                  </Box>
+                </Container>
+                
+              </Box>
+
+            </Stack>
 
           </Box>
         </TabPanel>
