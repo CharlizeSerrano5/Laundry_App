@@ -1,0 +1,18 @@
+.imageNumberContainer {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .imageNumber {
+    display: block;
+  }
+  
+  .imageText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+  }
