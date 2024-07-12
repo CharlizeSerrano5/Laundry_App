@@ -17,6 +17,7 @@ import DryerIcon from '../Assets/DefaultDryerIcon.svg'
 import NumberContext from './NumberContext'
 
 import './BookingTabs.css'
+import ConfirmButton from './ConfirmButton';
 
 let laundryId = 0;
 let dryerId = 0;
@@ -100,10 +101,12 @@ export default function BookingTabs() {
   }
 
   const [dryersBooked, setDryersBooked] = React.useState([])
-  const countDryersBooked = (num) => {
-    setDryersBooked({id: dryerId++,number: num})
+  const countDryersBooked = (newDryerBooking) => {
+    setDryersBooked((prevDryers) => [
+      ...prevDryers,
+      { id: laundryId++, ...newDryerBooking }
+  ]);
   }
-
   const buttonStyle={
       backgroundColor: '#76B148',
       display: 'inline', 
@@ -138,7 +141,7 @@ export default function BookingTabs() {
           <Box marginBottom={'100px'}>
             <Stack spacing={2}>
               <BookingTabContext.Provider value={{
-                defineBookedDay, defineBookedTime, defineBookedType, defineBookedNumber,
+                defineBookedDay, defineBookedTime, defineBookedType, defineBookedNumber, bookedTime,
                 BBQBooked, defineBBQBooked, 
                 clubhouseBooked, defineClubhouseBooked,
                 dryerBooked, defineDryerBooked,
@@ -146,6 +149,7 @@ export default function BookingTabs() {
                 accordianType, defineAccordianType,
                 selectedNumber, handleSelectedNumber,
                 washersBooked, countWashersBooked,
+                dryersBooked, countDryersBooked,
                 }}>
                     <WasherAccordian></WasherAccordian>                  
                     <DryerAccordian></DryerAccordian>
@@ -178,20 +182,17 @@ export default function BookingTabs() {
                       <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
                         <div>{washerBooked.day} {washerBooked.time}</div>
                         {/* TODO: print out the specific number */}
-                        <Grid container spacing={1}>
-                          <Grid item xs={2}>
+                        <Grid container spacing={1} justifyContent={'center'}>
+                          <Grid item xs={1.5}>
                               <div className='imageNumberContainer'>
                                 <img src={LaundryIcon} className='imageNumber'></img>
                                 <span className='imageText'>{washerBooked.number}</span>
                             </div>
                           </Grid>
-                          <Grid item xs={8}>
-                              <Stack spacing={1}>
-                              <Button style={buttonStyle}>Start</Button>
-                              <Button style={otherButtonStyle}>Report an Issue</Button>
-                            </Stack>
+                          <Grid item xs={9}>
+                              <ConfirmButton type={'confirm'}></ConfirmButton>
                           </Grid>
-                          <Grid item xs={2}>
+                          <Grid item xs={1.5}>
                               <div className='imageNumberContainer'>
                                 <img src={LaundryIcon} className='imageNumber'></img>
                                 <span className='imageText'>{washerBooked.number}</span>
@@ -212,17 +213,38 @@ export default function BookingTabs() {
               
               <Box style={{backgroundColor: '#7CEBDE', borderRadius: '10px', paddingTop: '10px', paddingBottom: '10px'}} display={dryerBooked.day?'block': 'none'}>
                 <Container>
-                  <h2 className='BookingTitle'>
+                <h2 className='BookingTitle'>
                     Dryers
                   </h2>
-                  <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
-                    <div>{dryerBooked.day} {dryerBooked.time}</div>
-                    <Stack spacing={1}>
-                      <Button style={buttonStyle}>Confirm Completion</Button>
-                      <Button style={otherButtonStyle}>Report an Issue</Button>
-                    </Stack>
-                  </Box>
-                </Container>
+                  <Stack spacing={2}>
+
+                    {dryersBooked.map((dryerBooked) => (
+                      <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
+                        <div>{dryerBooked.day} {dryerBooked.time}</div>
+                        {/* TODO: print out the specific number */}
+                        <Grid container spacing={1}>
+                          <Grid item xs={2}>
+                              <div className='imageNumberContainer'>
+                                <img src={DryerIcon} className='imageNumber'></img>
+                                <span className='imageText'>{dryerBooked.number}</span>
+                            </div>
+                          </Grid>
+                          <Grid item xs={8}>
+                              <ConfirmButton type={'cancel'}></ConfirmButton>
+                          </Grid>
+                          <Grid item xs={2}>
+                              <div className='imageNumberContainer'>
+                                <img src={DryerIcon} className='imageNumber'></img>
+                                <span className='imageText'>{dryerBooked.number}</span>
+                            </div>
+                          </Grid>
+                        </Grid>
+                        
+                        
+                      </Box>
+                    ))}
+                  </Stack>
+                  </Container>
                 
               </Box>
 

@@ -13,14 +13,14 @@ import './ScheduleButton.css'
 
 
 function ScheduleButton(){
-    const {selectedTime} = React.useContext(TimeContext)
+    const {selectedTime, defineSelectedTime} = React.useContext(TimeContext)
     // set a state for if its a available and if its not available
     const {selectedDay, selectedWeekday} = React.useContext(WeekdaySelectContext)
     const {selectedNumber} = React.useContext(BookingTabContext)
 
     // check the accordianType
     const {accordianType}= React.useContext(BookingTabContext);
-    const {washerBooked, defineWasherBooked, washersBooked, countWashersBooked} = React.useContext(BookingTabContext);
+    const {washerBooked, defineWasherBooked, washersBooked, countWashersBooked, dryersBooked, countDryersBooked} = React.useContext(BookingTabContext);
     const {dryerBooked, defineDryerBooked} = React.useContext(BookingTabContext);
     const {clubhouseBooked, defineClubhouseBooked} = React.useContext(BookingTabContext);
     const {BBQBooked, defineBBQBooked} = React.useContext(BookingTabContext);
@@ -78,12 +78,23 @@ function ScheduleButton(){
     // TODO: Increase time by an hour 
     const timeArr = selectedTime.split(':');
     // first item in this time array should be changed to a number
-    let tempHour = Number(timeArr[0]);
+    let hourCheck = Number(timeArr[0]);
     // Add 1 hour
-    tempHour += 1;
-    // if (tempHour-12 > 0){
-
-    // } 
+    hourCheck += 1;
+    let hourString;
+        let AMPMString;
+        if ((hourCheck - 12) === 0){
+            // time is also 12
+            hourString = 12;
+            AMPMString = 'PM';
+        } else if ((hourCheck - 12) > 0){
+            // overtime of 12
+            hourString = hourCheck - 12;
+            AMPMString = 'PM';
+        } else {
+            hourString = hourCheck
+        }
+    
     const year = new Date().getFullYear();
 
 
@@ -155,7 +166,8 @@ function ScheduleButton(){
                                 from
                             </h2>
                             <h2 className='ScheduleContent ScheduleImportant'>
-                                {selectedTime} to (hourlater)
+                                {selectedTime} to {`${hourString}:${timeArr[1]}`}
+                            
                             </h2>
                         </div>
                         <div>
@@ -172,20 +184,16 @@ function ScheduleButton(){
                                 handleClose();
                                 const newBooking = {  day: `${weekDay.slice(0, 3)} ${selectedDay}, `, time: selectedTime, number: selectedNumber};
                                 defineBookedDay(selectedDay);
-                                defineBookedTime(selectedTime);
                                 defineBookedNumber(selectedNumber);
                                 if (accordianType === 'Washer'){
                                     defineWasherBooked(selectedDay,selectedTime)
-                                    console.log('WasherBooked: ', washerBooked)
-                                    console.log('selectedDay: ', selectedDay)
-                                    console.log('selectedTime: ', selectedTime)
-
                                     // used washerBooked and push it onto the washersBooekd array
                                     countWashersBooked(newBooking);
-                                    console.log("WAHER BOOKED: ", washersBooked);
                                 }
                                 if (accordianType === 'Dryer'){
                                     defineDryerBooked(selectedDay,selectedTime)
+                                    countDryersBooked(newBooking);
+
                                 }
                                 if (accordianType === 'Clubhouse'){
                                     defineClubhouseBooked(selectedDay,selectedTime)
