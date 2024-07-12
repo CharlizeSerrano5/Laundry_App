@@ -170,14 +170,18 @@ function ScheduleButton(){
                         <Stack spacing={1}>
                             <Button style={buttonStyle} onClick={()=>{
                                 handleClose();
+                                const newBooking = {  day: `${weekDay.slice(0, 3)} ${selectedDay}, `, time: selectedTime, number: selectedNumber};
                                 defineBookedDay(selectedDay);
                                 defineBookedTime(selectedTime);
                                 defineBookedNumber(selectedNumber);
                                 if (accordianType === 'Washer'){
                                     defineWasherBooked(selectedDay,selectedTime)
+                                    console.log('WasherBooked: ', washerBooked)
                                     console.log('selectedDay: ', selectedDay)
+                                    console.log('selectedTime: ', selectedTime)
+
                                     // used washerBooked and push it onto the washersBooekd array
-                                    countWashersBooked(washerBooked);
+                                    countWashersBooked(newBooking);
                                     console.log("WAHER BOOKED: ", washersBooked);
                                 }
                                 if (accordianType === 'Dryer'){

@@ -6,11 +6,14 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import WasherAccordian from './WasherAccordian';
 import DryerAccordian from './DryerAccordian';
-import { Button, Container, Stack } from '@mui/material';
+import { Button, Container, Stack, Grid } from '@mui/material';
 import ClubhouseAccordian from './ClubhouseAccordian';
 import BBQAccordian from './BBQAccordian';
 import BookingTabContext from './BookingTabContext';
 import CenterContainer from './CenterContainer';
+import LaundryIcon from '../Assets/DefaultLaundryIcon.svg'
+import DryerIcon from '../Assets/DefaultDryerIcon.svg'
+
 import NumberContext from './NumberContext'
 
 import './BookingTabs.css'
@@ -89,15 +92,14 @@ export default function BookingTabs() {
 
   // TODO: also define the exact washer
   const [washersBooked, setWashersBooked] = React.useState([])
-  const countWashersBooked = (num) => {
-    setWashersBooked([...washersBooked, {
-      id: laundryId++, number: num}
-    ]);
+  const countWashersBooked = (newWasherBooking) => {
+    setWashersBooked((prevWashers) => [
+      ...prevWashers,
+      { id: laundryId++, ...newWasherBooking }
+  ]);
   }
 
-  const [dryersBooked, setDryersBooked] = React.useState({
-    dryers: [],
-  })
+  const [dryersBooked, setDryersBooked] = React.useState([])
   const countDryersBooked = (num) => {
     setDryersBooked({id: dryerId++,number: num})
   }
@@ -174,11 +176,30 @@ export default function BookingTabs() {
 
                     {washersBooked.map((washerBooked) => (
                       <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
-                        <div>{washerBooked.number.day} {washerBooked.number.time}</div>
-                        <Stack spacing={1}>
-                          <Button style={buttonStyle}>Start</Button>
-                          <Button style={otherButtonStyle}>Report an Issue</Button>
-                        </Stack>
+                        <div>{washerBooked.day} {washerBooked.time}</div>
+                        {/* TODO: print out the specific number */}
+                        <Grid container spacing={1}>
+                          <Grid item xs={2}>
+                              <div className='imageNumberContainer'>
+                                <img src={LaundryIcon} className='imageNumber'></img>
+                                <span className='imageText'>{washerBooked.number}</span>
+                            </div>
+                          </Grid>
+                          <Grid item xs={8}>
+                              <Stack spacing={1}>
+                              <Button style={buttonStyle}>Start</Button>
+                              <Button style={otherButtonStyle}>Report an Issue</Button>
+                            </Stack>
+                          </Grid>
+                          <Grid item xs={2}>
+                              <div className='imageNumberContainer'>
+                                <img src={LaundryIcon} className='imageNumber'></img>
+                                <span className='imageText'>{washerBooked.number}</span>
+                            </div>
+                          </Grid>
+                        </Grid>
+                        
+                        
                       </Box>
                     ))}
                   </Stack>
