@@ -2,10 +2,12 @@ import React from 'react';
 import { Button, Grid } from "@mui/material";
 import './WeekdayButton.css'
 import WeekdaySelectContext from './WeekdaySelectContext';
-export default function({WeekDay, Month, Date, Year}){
+import BookingTabContext from './BookingTabContext';
+export default function({WeekDay, Month, Date, Year, Number}){
     const weekArr = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
     const {selectedDay, handleSelectedDay, handleSelectedWeekday} = React.useContext(WeekdaySelectContext);
-    
+    const {handleSelectedNumber} = React.useContext(BookingTabContext);
+
     // previous printTimes was here
 
     const selectStyle = {
@@ -44,7 +46,9 @@ export default function({WeekDay, Month, Date, Year}){
                     handleSelectedDay(dateString)
                     handleSelectedWeekday(WeekDay);
                 }
-                // handleSelectedDay(dateString);
+                if (Number){
+                    handleSelectedNumber(Number);
+                }
             }}>
                 <Grid container spacing={0.5} style={{padding: '0px', width: '100%'}}>
                     <Grid item xs={12} style={{padding: '0px'}}>

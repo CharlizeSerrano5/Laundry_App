@@ -11,15 +11,23 @@ import ClubhouseAccordian from './ClubhouseAccordian';
 import BBQAccordian from './BBQAccordian';
 import BookingTabContext from './BookingTabContext';
 import CenterContainer from './CenterContainer';
-
-
+import NumberContext from './NumberContext'
 
 import './BookingTabs.css'
 
+let laundryId = 0;
+let dryerId = 0;
 
 export default function BookingTabs() {
   // const [tabValue, setValue] = React.useState('1'); // currently on the first one
   const {tabValue, setValue} = React.useContext(BookingTabContext);
+  const [selectedNumber, setSelectedNumber] = React.useState('');
+
+  const handleSelectedNumber = (number) => {
+      setSelectedNumber(number);
+      // Being passed into washer and dryer
+  }
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -31,20 +39,14 @@ export default function BookingTabs() {
     time: '',
   })
   const defineWasherBooked = (day, time) => {
-    setWasherBooked({
-      day,
-      time
-    })
+    setWasherBooked({day,time})
   }
   const [dryerBooked, setDryerBooked] = React.useState({
     day: '',
     time: '',
   })
   const defineDryerBooked = (day, time) => {
-    setDryerBooked({
-      day,
-      time
-    })
+    setDryerBooked({day,time})
   }
 
   const [clubhouseBooked, setClubhouseBooked] = React.useState({
@@ -52,10 +54,7 @@ export default function BookingTabs() {
     time: '',
   })
   const defineClubhouseBooked = (day, time) => {
-    setClubhouseBooked({
-      day,
-      time
-    })
+    setClubhouseBooked({day,time})
   }
 
   const [BBQBooked, setBBQBooked] = React.useState({
@@ -63,22 +62,18 @@ export default function BookingTabs() {
     time: '',
   })
   const defineBBQBooked = (day, time) => {
-    setBBQBooked({
-      day,
-      time
-    })
+    setBBQBooked({day,time})
   }
   const [bookedDay, setBookedDay] = React.useState('');
   const [bookedTime, setBookedTime] = React.useState('');
   const [bookedType, setBookedType] = React.useState('');
-  
+  const [bookedNumber, setBookedNumber] = React.useState('');
+
   const [accordianType, setAccordianType] = React.useState('');
   const defineAccordianType = (type) => {
     setAccordianType(type);
   }
-
-  // TODO: set up a booking type (ex: laundry, grill, etc.)
-
+  
   const defineBookedDay = (day) => {
     setBookedDay(day)
   }
@@ -91,7 +86,25 @@ export default function BookingTabs() {
     setBookedType(type)
   }
 
-  // TODO: also define the exact washer or type
+  const defineBookedNumber = (number) => {
+    setBookedNumber(number)
+  }
+
+  // TODO: also define the exact washer
+  const [washersBooked, setWashersBooked] = React.useState([])
+  const countWashersBooked = (num) => {
+    setWashersBooked([...washersBooked, {
+      id: laundryId++, number: num}
+    ]);
+  }
+
+  const [dryersBooked, setDryersBooked] = React.useState({
+    dryers: [],
+  })
+  const countDryersBooked = (num) => {
+    setDryersBooked({id: dryerId++,number: num})
+  }
+
   const buttonStyle={
       backgroundColor: '#76B148',
       display: 'inline', 
@@ -126,12 +139,14 @@ export default function BookingTabs() {
           <Box marginBottom={'100px'}>
             <Stack spacing={2}>
               <BookingTabContext.Provider value={{
-                defineBookedDay, defineBookedTime, defineBookedType, 
+                defineBookedDay, defineBookedTime, defineBookedType, defineBookedNumber,
                 BBQBooked, defineBBQBooked, 
                 clubhouseBooked, defineClubhouseBooked,
                 dryerBooked, defineDryerBooked,
                 washerBooked, defineWasherBooked,
-                accordianType, defineAccordianType
+                accordianType, defineAccordianType,
+                selectedNumber, handleSelectedNumber,
+                washersBooked, countWashersBooked,
                 }}>
                     <WasherAccordian></WasherAccordian>                  
                     <DryerAccordian></DryerAccordian>

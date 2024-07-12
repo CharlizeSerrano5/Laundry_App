@@ -11,13 +11,14 @@ import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
 import BookingTabContext from './BookingTabContext';
 
-
 import React from 'react';
 function WasherAccordian() {
     const {accordianType, defineAccordianType} = React.useContext(BookingTabContext);
+
     // const {washerBooked, defineWasherBooked} = React.useContext(WasherContext);
     // define the washer object
 
+    const washerArray = ['1', '2', '3', '4']
 
     const currentDate = new Date();
     const currWeek = [];
@@ -51,9 +52,11 @@ function WasherAccordian() {
             </AccordionSummary>
             <AccordionDetails>
                 <Stack spacing={2}>
-                    <WeekdayBox icon={LaundryIcon}></WeekdayBox>
-                    <WeekdayBox icon={LaundryIcon}></WeekdayBox>
-                    <WeekdayBox icon={LaundryIcon}></WeekdayBox>                    
+                    {washerArray.map((number)=> (
+                        <WeekdayBox icon={LaundryIcon} number={number} key={number}></WeekdayBox>
+                        ))
+                        
+                    }
                 </Stack>
                 
             </AccordionDetails>

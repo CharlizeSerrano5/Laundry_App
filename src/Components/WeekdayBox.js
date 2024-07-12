@@ -4,6 +4,7 @@ import LaundryIcon from '../Assets/LaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
 import TimesGrid from './TimesGrid';
 import WeekdaySelectContext from './WeekdaySelectContext';
+import BookingTabContext from './BookingTabContext';
 import './WeekdayBox.css'
 function WeekdayBox({icon, number}){
     const currentDate = new Date();
@@ -13,6 +14,7 @@ function WeekdayBox({icon, number}){
     const [weekdaySelect, setWeekdaySelect] = React.useState('false');
     const [selectedDay, setSelectedDay] = React.useState('');
     const [selectedWeekday, setSelectedWeekday] = React.useState('');
+    const {handleSelectedNumber} = React.useContext(BookingTabContext);
 
     const handleSelectedWeekday = (weekday) => {
         setSelectedWeekday(weekday);
@@ -33,6 +35,7 @@ function WeekdayBox({icon, number}){
       currWeek.push(tempDate);
     //   console.log('tempDate: ', tempDate);
     }
+
     return (
         <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
             <Grid container spacing={1}>
@@ -51,13 +54,10 @@ function WeekdayBox({icon, number}){
                         <span className='imageText'>{number}</span>
                     </div>
                     {currWeek.map((weekday) => (
-                            <WeekdaySelectContext.Provider value={{selectedDay, handleSelectedDay, handleSelectedWeekday, selectedWeekday}}>
+                            <WeekdaySelectContext.Provider key={weekday} value={{selectedDay, handleSelectedDay, handleSelectedWeekday, selectedWeekday}}>
                                 <WeekdayButton key={`${weekday.getDay()}`} WeekDay={weekday.getDay()} Month={weekday.getMonth()+1} Date={weekday.getDate()}
-                                Year={weekday.getFullYear()}></WeekdayButton>
+                                Year={weekday.getFullYear()} Number={number}></WeekdayButton>
                             </WeekdaySelectContext.Provider>
-                            
-                        
-                        
                         ))}
                     </Stack>
                 </Grid>

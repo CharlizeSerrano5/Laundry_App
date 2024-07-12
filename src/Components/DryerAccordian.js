@@ -5,7 +5,6 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
 import WeekdayButton from './WeekdayButton';
-import LaundryIcon from '../Assets/LaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
 import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
@@ -19,6 +18,7 @@ function DryerAccordian() {
   // Define the original accordian type
   const {accordianType, defineAccordianType} = React.useContext(BookingTabContext);
 
+  const dryerArray = ['1', '2', '3', '4', '5']
 
     return (
         <Accordion style={{backgroundColor: '#7CEBDE', borderRadius: '10px'}} onChange={() =>{
@@ -44,9 +44,9 @@ function DryerAccordian() {
             {/* <AccordianTypeContext.Provider value={{accordianType}}>
 
             </AccordianTypeContext.Provider> */}
-            <WeekdayBox icon={DryerIcon}></WeekdayBox>
-            <WeekdayBox icon={DryerIcon}></WeekdayBox>
-            <WeekdayBox icon={DryerIcon}></WeekdayBox>
+            {dryerArray.map((number) => (
+              <WeekdayBox icon={DryerIcon} number={number} key={number}></WeekdayBox>
+            ))}
           </Stack>
           
         </AccordionDetails>

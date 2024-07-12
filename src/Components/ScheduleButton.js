@@ -16,6 +16,8 @@ function ScheduleButton(){
     const {selectedTime} = React.useContext(TimeContext)
     // set a state for if its a available and if its not available
     const {selectedDay, selectedWeekday} = React.useContext(WeekdaySelectContext)
+    const {selectedNumber} = React.useContext(BookingTabContext)
+
     // check the accordianType
     const {accordianType}= React.useContext(BookingTabContext);
     const {washerBooked, defineWasherBooked} = React.useContext(BookingTabContext);
@@ -25,7 +27,7 @@ function ScheduleButton(){
 
     const [booking, setBooking] = React.useState('');
 
-    const {defineBookedDay, defineBookedTime} = React.useContext(BookingTabContext);
+    const {defineBookedDay, defineBookedTime, defineBookedNumber} = React.useContext(BookingTabContext);
 
     // Obtained from MUI
     const [open, setOpen] = React.useState(false);
@@ -79,9 +81,10 @@ function ScheduleButton(){
     let tempHour = Number(timeArr[0]);
     // Add 1 hour
     tempHour += 1;
-    // if (tempHour >) 
+    // if (tempHour-12 > 0){
+
+    // } 
     const year = new Date().getFullYear();
-    // console.log(timeArr)
 
 
     const buttonStyle={
@@ -134,8 +137,8 @@ function ScheduleButton(){
                         </div>
                         <div>
                             <h2 className='ScheduleContent ScheduleImportant'>
-                                {accordianType === 'Washer'? 'Washing Machine #1'
-                                : accordianType === 'Dryer'? 'Drying Machine #1'
+                                {accordianType === 'Washer'? `Washing Machine #${selectedNumber}`
+                                : accordianType === 'Dryer'? `Drying Machine #${selectedNumber}`
                                 : accordianType === 'Clubhouse'? 'Clubhouse'
                                 : accordianType === 'BBQ'? 'BBQ Grill' : ''
                                 }
@@ -169,6 +172,7 @@ function ScheduleButton(){
                                 handleClose();
                                 defineBookedDay(selectedDay);
                                 defineBookedTime(selectedTime);
+                                defineBookedNumber(selectedNumber);
                                 if (accordianType === 'Washer'){
                                     defineWasherBooked(selectedDay,selectedTime)
                                 }
@@ -183,7 +187,6 @@ function ScheduleButton(){
                                 }
                             }}>
                                 OK
-                                {/* TODO: when you select okay then save the information */}
                             </Button>
                             <Button style={otherButtonStyle}>
                                 RESEND
