@@ -18,7 +18,7 @@ function WasherAccordian() {
     // const {washerBooked, defineWasherBooked} = React.useContext(WasherContext);
     // define the washer object
 
-    const washerArray = ['1', '2', '3', '4']
+    const washerArray = [1, 2, 3, 4]
 
     const currentDate = new Date();
     const currWeek = [];

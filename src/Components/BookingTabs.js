@@ -34,10 +34,7 @@ export default function BookingTabs() {
   };
 
   // save the washer as an object
-  const [washerBooked, setWasherBooked] = React.useState({
-    day: '',
-    time: '',
-  })
+  const [washerBooked, setWasherBooked] = React.useState({})
   const defineWasherBooked = (day, time) => {
     setWasherBooked({day,time})
   }
@@ -173,13 +170,20 @@ export default function BookingTabs() {
                   <h2 className='BookingTitle'>
                     Washers
                   </h2>
-                  <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
-                    <div>{washerBooked.day} {washerBooked.time}</div>
-                    <Stack spacing={1}>
-                      <Button style={buttonStyle}>Start</Button>
-                      <Button style={otherButtonStyle}>Report an Issue</Button>
-                    </Stack>
-                  </Box>
+                  <Stack spacing={2}>
+
+                    {washersBooked.map((washerBooked) => (
+                      <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
+                        <div>{washerBooked.number.day} {washerBooked.number.time}</div>
+                        <Stack spacing={1}>
+                          <Button style={buttonStyle}>Start</Button>
+                          <Button style={otherButtonStyle}>Report an Issue</Button>
+                        </Stack>
+                      </Box>
+                    ))}
+                  </Stack>
+
+
                 </Container>
                 
               </Box>

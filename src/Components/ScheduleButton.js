@@ -20,7 +20,7 @@ function ScheduleButton(){
 
     // check the accordianType
     const {accordianType}= React.useContext(BookingTabContext);
-    const {washerBooked, defineWasherBooked} = React.useContext(BookingTabContext);
+    const {washerBooked, defineWasherBooked, washersBooked, countWashersBooked} = React.useContext(BookingTabContext);
     const {dryerBooked, defineDryerBooked} = React.useContext(BookingTabContext);
     const {clubhouseBooked, defineClubhouseBooked} = React.useContext(BookingTabContext);
     const {BBQBooked, defineBBQBooked} = React.useContext(BookingTabContext);
@@ -175,6 +175,10 @@ function ScheduleButton(){
                                 defineBookedNumber(selectedNumber);
                                 if (accordianType === 'Washer'){
                                     defineWasherBooked(selectedDay,selectedTime)
+                                    console.log('selectedDay: ', selectedDay)
+                                    // used washerBooked and push it onto the washersBooekd array
+                                    countWashersBooked(washerBooked);
+                                    console.log("WAHER BOOKED: ", washersBooked);
                                 }
                                 if (accordianType === 'Dryer'){
                                     defineDryerBooked(selectedDay,selectedTime)
