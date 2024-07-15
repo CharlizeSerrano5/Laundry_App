@@ -8,7 +8,7 @@ import WeekdaySelectContext from './WeekdaySelectContext';
 import BookingTabContext from './BookingTabContext';
 
 
-function ConfirmButton({type}){
+function ConfirmButton({type, booking, day, time, weekday}){
     const confirmButtonStyle={
         backgroundColor: '#76B148',
         display: 'inline', 
@@ -36,10 +36,28 @@ function ConfirmButton({type}){
         justifyContent: 'center',
         color: 'white',
     }
-    
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const circleStyle={
+        borderRadius: '50%',
+        backgroundColor: '#D6D5DA',
+        color: '#160449', 
+        fontSize: '11px',
+        padding: '10px',
+        margin: '10px',
+        textAlign: 'center',
+        display: 'inline',
+        fontWeight: '600'
+    }
+    const innerCircleStyle={
+        borderRadius: '50%',
+        backgroundColor: '#FFFFFF',
+        color: '#160449', 
+        fontSize: '11px',
+        padding: '10px',
+        margin: '10px',
+        textAlign: 'center',
+        display: 'inline',
+        fontWeight: '600'
+    }
     const style = {
         position: 'absolute',
         top: '50%',
@@ -50,8 +68,12 @@ function ConfirmButton({type}){
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
-        
       };
+    
+    
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     
     return (
@@ -59,9 +81,19 @@ function ConfirmButton({type}){
 
             <Stack spacing={1}>
                 <Button style={type==='cancel'?cancelButtonStyle:confirmButtonStyle} onClick={() => {
-                    handleOpen();
-                }}>{type==='confirm'?'Confirm Completion': 'Cancel Booking'}</Button>
-                <Button style={otherButtonStyle}>Report an Issue</Button>
+                    if (type === 'cancel' || type === 'confirm'){
+                        handleOpen();
+                    }
+                }}>
+                    <Typography textTransform={'none'}>
+                        {type==='confirm'?'Confirm Completion': 
+                        type === 'cancel' ? 'Cancel Booking' :
+                        'Start'}
+                    </Typography>
+                </Button>
+                <Button style={otherButtonStyle}>
+                    <Typography textTransform={'none'}>Report an Issue</Typography>
+                </Button>
             </Stack>
             <Modal
                 open={open}
@@ -74,21 +106,63 @@ function ConfirmButton({type}){
                 <Box sx={style} alignItems={'center'} style={{borderRadius: '10px'}}>
                     <Stack spacing={3}>
 
-                        <div>
-                            <h2 className='ScheduleContent'>
-                                {type==='confirm'?'Are you sure you want to confirm completion?': 'Are you sure you want to cancel your booking'}
-                            </h2>
-                        </div>
+                            {type==='cancel'?
+                                <Stack spacing={2} justifyContent={'center'}>
+
+                                    <h2 className='ScheduleContent'>
+                                        Are you sure you want to cancel booking for the {booking} on
+                                    </h2>
+                                    <div>
+                                        <h2 className='ScheduleContent ScheduleImportant'>
+                                            {weekday} {day}
+                                        </h2>
+                                        <h2 className='ScheduleContent'>
+                                            from
+                                        </h2>
+                                        <h2 className='ScheduleContent ScheduleImportant'>
+                                            {time}
+                                        </h2>
+                                    </div>
+                                </Stack>
+                                
+                            :
+                            <Stack spacing={2} justifyContent={'center'}>
+
+                                <h2 className='ScheduleContent'>
+                                    Are you sure you want to confirm completion?
+                                </h2>
+                                <h2 className='ScheduleContent'>
+                                    It looks like there is still
+                                </h2>
+                                <div>
+                                    <Box style={circleStyle}>
+                                        <Box style={innerCircleStyle}>
+                                            64
+                                        </Box>
+                                    </Box>
+                                </div>
+                                <h2 className='ScheduleContent'>
+                                    left on your {booking}.
+                                </h2>
+                            </Stack>
+                            }
                         
                     
                         <Stack spacing={1}>
                             <Button style={confirmButtonStyle} onClick={()=>{
                                 handleClose();
+                                // TODO: remove item from array
                             }}>
-                                OK
+                                <Typography textTransform={'none'}>
+                                    {type==='confirm'? 'Yes, I want to confirm completion':
+                                        'Yes, I want to cancel booking'
+                                    }
+                            </Typography>
                             </Button>
-                            <Button style={otherButtonStyle}>
-                                RESEND
+                            <Button style={otherButtonStyle} onClick={() => {
+                                handleClose()
+                            }}>
+                                <Typography textTransform={'none'}>Nevermind</Typography>
                             </Button>
                         </Stack>
                                 

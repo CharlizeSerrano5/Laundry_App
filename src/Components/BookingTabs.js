@@ -181,7 +181,7 @@ export default function BookingTabs() {
                   </h2>
                   <Stack spacing={2}>
                     {washersBooked.map((washerBooked) => (
-                         <BookingBox icon={LaundryIcon} number={washerBooked.number} day={washerBooked.day} time={washerBooked.time}></BookingBox>
+                         <BookingBox icon={LaundryIcon} number={washerBooked.number} weekday={washerBooked.weekday} day={washerBooked.day} time={washerBooked.time} type={'Washer'}></BookingBox>
                     ))}
                   </Stack>
                 </Container>
@@ -197,7 +197,7 @@ export default function BookingTabs() {
                   <Stack spacing={2}>
 
                     {dryersBooked.map((dryerBooked) => (                      
-                      <BookingBox icon={DryerIcon} number={dryerBooked.number} day={dryerBooked.day} time={dryerBooked.time}></BookingBox>
+                      <BookingBox icon={DryerIcon} number={dryerBooked.number} weekday={dryerBooked.weekday} day={dryerBooked.day} time={dryerBooked.time} type={'Dryer'}></BookingBox>
                     ))}
                   </Stack>
                   </Container>
@@ -209,18 +209,18 @@ export default function BookingTabs() {
                   <h2 className='BookingTitle'>
                     Clubhouse
                   </h2>
-                  <BookingBox icon={ClubHouseIcon} day={clubhouseBooked.day} time={clubhouseBooked.time}></BookingBox>
+                  <BookingBox icon={ClubHouseIcon} day={clubhouseBooked.day} time={clubhouseBooked.time} type={'Clubhouse'}></BookingBox>
 
                 </Container>
                 
               </Box>
 
-              <Box style={{backgroundColor: '#F97979', borderRadius: '10px', paddingTop: '10px', paddingBottom: '10px'}} display={BBQBooked.day?'block': 'none'}>
+              <Box style={{backgroundColor: '#F97979', borderRadius: '10px', paddingTop: '10px', paddingBottom: '10px', }} display={BBQBooked.day?'block': 'none'}>
                 <Container>
                   <h2 className='BookingTitle'>
                     BBQ Grill
                   </h2>
-                  <BookingBox icon={BBQIcon} day={BBQBooked.day} time={BBQBooked.time}></BookingBox>
+                  <BookingBox icon={BBQIcon} day={BBQBooked.day} time={BBQBooked.time} type={'BBQ Grill'}></BookingBox>
                 </Container>
                 
               </Box>
