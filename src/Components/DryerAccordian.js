@@ -18,8 +18,12 @@ function DryerAccordian() {
   // Define the original accordian type
   const {accordianType, defineAccordianType} = React.useContext(BookingTabContext);
 
-  const dryerArray = ['1', '2', '3', '4', '5']
-
+  let dryerArray = [];
+  const dryerNumber = 5;
+  // const dryerArray = [1, 2, 3, 4]
+  for (let i = 0; i < dryerNumber; i++){
+      dryerArray.push(i+1);
+  }
     return (
         <Accordion style={{backgroundColor: '#7CEBDE', borderRadius: '10px'}} onChange={() =>{
           defineAccordianType('Dryer')

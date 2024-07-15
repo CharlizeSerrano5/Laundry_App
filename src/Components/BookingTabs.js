@@ -13,11 +13,14 @@ import BookingTabContext from './BookingTabContext';
 import CenterContainer from './CenterContainer';
 import LaundryIcon from '../Assets/DefaultLaundryIcon.svg'
 import DryerIcon from '../Assets/DefaultDryerIcon.svg'
+import ClubHouseIcon from '../Assets/ClubHouseIcon.svg'
+import BBQIcon from '../Assets/BarIcon.svg'
 
 import NumberContext from './NumberContext'
 
 import './BookingTabs.css'
 import ConfirmButton from './ConfirmButton';
+import BookingBox from './BookingBox';
 
 let laundryId = 0;
 let dryerId = 0;
@@ -169,7 +172,7 @@ export default function BookingTabs() {
           <div>Booked Time: {bookedTime}</div> */}
           
           {/* TODO: Create separate components for every item (the box, the buttons)*/}
-          <Box>
+          <Box marginBottom={'100px'}>
             <Stack spacing={2}>
               <Box style={{backgroundColor: '#79CBF9', borderRadius: '10px', paddingTop: '10px', paddingBottom: '10px'}} display={washerBooked.day?'block': 'none'}>
                 <Container>
@@ -177,35 +180,10 @@ export default function BookingTabs() {
                     Washers
                   </h2>
                   <Stack spacing={2}>
-
                     {washersBooked.map((washerBooked) => (
-                      <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
-                        <div>{washerBooked.day} {washerBooked.time}</div>
-                        {/* TODO: print out the specific number */}
-                        <Grid container spacing={1} justifyContent={'center'}>
-                          <Grid item xs={1.5}>
-                              <div className='imageNumberContainer'>
-                                <img src={LaundryIcon} className='imageNumber'></img>
-                                <span className='imageText'>{washerBooked.number}</span>
-                            </div>
-                          </Grid>
-                          <Grid item xs={9}>
-                              <ConfirmButton type={'confirm'}></ConfirmButton>
-                          </Grid>
-                          <Grid item xs={1.5}>
-                              <div className='imageNumberContainer'>
-                                <img src={LaundryIcon} className='imageNumber'></img>
-                                <span className='imageText'>{washerBooked.number}</span>
-                            </div>
-                          </Grid>
-                        </Grid>
-                        
-                        
-                      </Box>
+                         <BookingBox icon={LaundryIcon} number={washerBooked.number} day={washerBooked.day} time={washerBooked.time}></BookingBox>
                     ))}
                   </Stack>
-
-
                 </Container>
                 
               </Box>
@@ -218,30 +196,8 @@ export default function BookingTabs() {
                   </h2>
                   <Stack spacing={2}>
 
-                    {dryersBooked.map((dryerBooked) => (
-                      <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
-                        <div>{dryerBooked.day} {dryerBooked.time}</div>
-                        {/* TODO: print out the specific number */}
-                        <Grid container spacing={1}>
-                          <Grid item xs={2}>
-                              <div className='imageNumberContainer'>
-                                <img src={DryerIcon} className='imageNumber'></img>
-                                <span className='imageText'>{dryerBooked.number}</span>
-                            </div>
-                          </Grid>
-                          <Grid item xs={8}>
-                              <ConfirmButton type={'cancel'}></ConfirmButton>
-                          </Grid>
-                          <Grid item xs={2}>
-                              <div className='imageNumberContainer'>
-                                <img src={DryerIcon} className='imageNumber'></img>
-                                <span className='imageText'>{dryerBooked.number}</span>
-                            </div>
-                          </Grid>
-                        </Grid>
-                        
-                        
-                      </Box>
+                    {dryersBooked.map((dryerBooked) => (                      
+                      <BookingBox icon={DryerIcon} number={dryerBooked.number} day={dryerBooked.day} time={dryerBooked.time}></BookingBox>
                     ))}
                   </Stack>
                   </Container>
@@ -253,13 +209,8 @@ export default function BookingTabs() {
                   <h2 className='BookingTitle'>
                     Clubhouse
                   </h2>
-                  <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
-                    <div>{clubhouseBooked.day} {clubhouseBooked.time}</div>
-                    <Stack spacing={1}>
-                      <Button style={buttonStyle}>Cancel Booking</Button>
-                      <Button style={otherButtonStyle}>Report an Issue</Button>
-                    </Stack>
-                  </Box>
+                  <BookingBox icon={ClubHouseIcon} day={clubhouseBooked.day} time={clubhouseBooked.time}></BookingBox>
+
                 </Container>
                 
               </Box>
@@ -269,13 +220,7 @@ export default function BookingTabs() {
                   <h2 className='BookingTitle'>
                     BBQ Grill
                   </h2>
-                  <Box style={{backgroundColor: '#F2F2F2', padding: '10px', borderRadius: '10px'}}>
-                    <div>{BBQBooked.day} {BBQBooked.time}</div>
-                    <Stack spacing={1}>
-                      <Button style={buttonStyle}>Cancel Booking</Button>
-                      <Button style={otherButtonStyle}>Report an Issue</Button>
-                    </Stack>
-                  </Box>
+                  <BookingBox icon={BBQIcon} day={BBQBooked.day} time={BBQBooked.time}></BookingBox>
                 </Container>
                 
               </Box>

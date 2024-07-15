@@ -18,7 +18,12 @@ function WasherAccordian() {
     // const {washerBooked, defineWasherBooked} = React.useContext(WasherContext);
     // define the washer object
 
-    const washerArray = [1, 2, 3, 4]
+    let washerArray = [];
+    const washerNumber = 4;
+    // const washerArray = [1, 2, 3, 4]
+    for (let i = 0; i < washerNumber; i++){
+        washerArray.push(i+1);
+    }
 
     const currentDate = new Date();
     const currWeek = [];
@@ -42,11 +47,10 @@ function WasherAccordian() {
             >
             <Grid container spacing={1} textAlign={'left'}>
                 <Grid item xs={12}>
-                <h2>Washers</h2>
+                    <h2>Washers</h2>
                 </Grid>
                 <Grid item xs={12} textAlign={'left'}>
-                <AvailableButton isAvailable={true}></AvailableButton>
-
+                    <AvailableButton isAvailable={true}></AvailableButton>
                 </Grid>
             </Grid>
             </AccordionSummary>
@@ -54,11 +58,9 @@ function WasherAccordian() {
                 <Stack spacing={2}>
                     {washerArray.map((number)=> (
                         <WeekdayBox icon={LaundryIcon} number={number} key={number}></WeekdayBox>
-                        ))
-                        
+                        ))    
                     }
                 </Stack>
-                
             </AccordionDetails>
         </Accordion>
     );

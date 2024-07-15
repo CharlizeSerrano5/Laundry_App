@@ -50,11 +50,12 @@ function ConfirmButton({type}){
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
+        
       };
 
     
     return (
-        <Container>
+        <Box className='ConfirmButton' style={{width: '100%'}}>
 
             <Stack spacing={1}>
                 <Button style={type==='cancel'?cancelButtonStyle:confirmButtonStyle} onClick={() => {
@@ -98,7 +99,7 @@ function ConfirmButton({type}){
             </Container>
 
             </Modal>
-        </Container>
+        </Box>
 
 
 
