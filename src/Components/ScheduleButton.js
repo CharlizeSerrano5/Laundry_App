@@ -189,7 +189,7 @@ function ScheduleButton(){
                                 if (accordianType === 'Washer'){
                                     defineWasherBooked(selectedDay,selectedTime)
                                     // used washerBooked and push it onto the washersBooekd array
-                                    countWashersBooked(newBooking);
+                                    countWashersBooked(newBooking, selectedNumber);
                                 }
                                 if (accordianType === 'Dryer'){
                                     defineDryerBooked(selectedDay,selectedTime)

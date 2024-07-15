@@ -2,7 +2,7 @@ import { Box, Grid, Button } from "@mui/material";
 import ConfirmButton from "./ConfirmButton";
 function BookingBox({icon, number, weekday, day, time, type}) {
     const timeArr = time.split(':');
-    console.log('day: ', day);
+    // console.log('day: ', day);
     const defaultStyle = {
         borderRadius: '5px',
         backgroundColor: '#D6D5DA',
@@ -28,7 +28,7 @@ function BookingBox({icon, number, weekday, day, time, type}) {
                     </div>
                 </Grid>
                 <Grid item xs={8}>
-                    {<ConfirmButton type={'cancel'} weekday={weekday} booking={type} day={day} time={time}></ConfirmButton>}
+                    {<ConfirmButton type={'cancel'} weekday={weekday} booking={type} day={day} time={time} number={number}></ConfirmButton>}
                 </Grid>
                 <Grid item xs={2}>
                     <Box style={defaultStyle}>

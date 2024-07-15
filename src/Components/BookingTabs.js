@@ -96,12 +96,20 @@ export default function BookingTabs() {
 
   // TODO: also define the exact washer
   const [washersBooked, setWashersBooked] = React.useState([])
-  const countWashersBooked = (newWasherBooking) => {
+  const countWashersBooked = (newWasherBooking, id) => {
     setWashersBooked((prevWashers) => [
       ...prevWashers,
-      { id: laundryId++, ...newWasherBooking }
+      { id: id, ...newWasherBooking }
   ]);
   }
+
+  const removeWasherBooking = (id) => {
+    setWashersBooked((prevWashers) => 
+      prevWashers.filter((washer) => washer.id !== id)
+    );
+  };
+
+  console.log('washersBOOKED, ', washersBooked)
 
   const [dryersBooked, setDryersBooked] = React.useState([])
   const countDryersBooked = (newDryerBooking) => {
@@ -151,7 +159,7 @@ export default function BookingTabs() {
                 washerBooked, defineWasherBooked,
                 accordianType, defineAccordianType,
                 selectedNumber, handleSelectedNumber,
-                washersBooked, countWashersBooked,
+                washersBooked, countWashersBooked, removeWasherBooking,
                 dryersBooked, countDryersBooked,
                 }}>
                     <WasherAccordian></WasherAccordian>                  
@@ -172,9 +180,12 @@ export default function BookingTabs() {
           <div>Booked Time: {bookedTime}</div> */}
           
           {/* TODO: Create separate components for every item (the box, the buttons)*/}
+          <BookingTabContext.Provider value={{
+                removeWasherBooking,
+                }}>
           <Box marginBottom={'100px'}>
             <Stack spacing={2}>
-              <Box style={{backgroundColor: '#79CBF9', borderRadius: '10px', paddingTop: '10px', paddingBottom: '10px'}} display={washerBooked.day?'block': 'none'}>
+              <Box style={{backgroundColor: '#79CBF9', borderRadius: '10px', paddingTop: '10px', paddingBottom: '10px'}} display={washersBooked.length != 0 ?'block': 'none'}>
                 <Container>
                   <h2 className='BookingTitle'>
                     Washers
@@ -228,6 +239,7 @@ export default function BookingTabs() {
             </Stack>
 
           </Box>
+          </BookingTabContext.Provider>
         </TabPanel>
       </TabContext>
 

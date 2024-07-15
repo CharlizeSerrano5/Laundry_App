@@ -5,10 +5,11 @@ import Modal from '@mui/material/Modal';
 import { Box, Button, Container, Stack } from "@mui/material";
 import TimeContext from "./TimeContext";
 import WeekdaySelectContext from './WeekdaySelectContext';
+// import BookingTabContext from './BookingTabContext';
 import BookingTabContext from './BookingTabContext';
 
-
-function ConfirmButton({type, booking, day, time, weekday}){
+function ConfirmButton({type, booking, day, time, weekday, number}){
+    const {removeWasherBooking} = React.useContext(BookingTabContext);
     const confirmButtonStyle={
         backgroundColor: '#76B148',
         display: 'inline', 
@@ -152,6 +153,10 @@ function ConfirmButton({type, booking, day, time, weekday}){
                             <Button style={confirmButtonStyle} onClick={()=>{
                                 handleClose();
                                 // TODO: remove item from array
+                                if (booking ==='Washer') {
+                                    console.log('number removed: ', number);
+                                    removeWasherBooking(number);
+                                }
                             }}>
                                 <Typography textTransform={'none'}>
                                     {type==='confirm'? 'Yes, I want to confirm completion':
